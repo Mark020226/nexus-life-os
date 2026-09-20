@@ -2,9 +2,7 @@ import streamlit as st
 import sqlite3
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
 import os
-import json
 from datetime import datetime
 
 # Page Config
@@ -27,40 +25,64 @@ def get_db():
 # Custom styling
 st.markdown("""
 <style>
-    .ai-box {
-        background-color: #f0fdf4;
-        border-left: 4px solid #16a34a;
-        padding: 10px 14px;
-        border-radius: 0 6px 6px 0;
-        margin: 8px 0;
-        color: #14532d;
+    .metric-card {
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 14px;
     }
-    .dup-box {
-        background-color: #fffbeb;
-        border-left: 4px solid #f59e0b;
-        padding: 10px 14px;
-        border-radius: 0 6px 6px 0;
-        margin: 8px 0;
+    .badge-dup {
+        background-color: #fef3c7;
         color: #92400e;
-    }
-    .tech-pill {
-        display: inline-block;
-        background-color: #e0f2fe;
-        color: #0369a1;
-        padding: 2px 8px;
+        padding: 3px 8px;
         border-radius: 4px;
-        font-size: 0.85em;
-        font-weight: 600;
+        font-size: 11px;
+        font-weight: 700;
+        display: inline-block;
         margin-right: 6px;
     }
-    .bolivia-pill {
-        display: inline-block;
-        background-color: #fef2f2;
-        color: #b91c1c;
-        padding: 2px 8px;
+    .badge-ai-found {
+        background-color: #ede9fe;
+        color: #5b21b6;
+        padding: 3px 8px;
         border-radius: 4px;
-        font-size: 0.85em;
-        font-weight: 600;
+        font-size: 11px;
+        font-weight: 700;
+        display: inline-block;
+        margin-right: 6px;
+    }
+    .badge-bolivia {
+        background-color: #dcfce7;
+        color: #166534;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 700;
+        display: inline-block;
+    }
+    .ai-what-box {
+        background-color: #f0fdf4;
+        border-left: 4px solid #16a34a;
+        padding: 8px 12px;
+        border-radius: 0 6px 6px 0;
+        margin: 6px 0;
+        font-size: 13px;
+    }
+    .ai-helps-box {
+        background-color: #eff6ff;
+        border-left: 4px solid #2563eb;
+        padding: 8px 12px;
+        border-radius: 0 6px 6px 0;
+        margin: 6px 0;
+        font-size: 13px;
+    }
+    .table-meta {
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 10px;
+        font-size: 12px;
+        margin: 8px 0;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -69,15 +91,14 @@ st.markdown("""
 with st.sidebar:
     st.title("🧠 NEXUS Life OS")
     st.markdown("**Usuario:** Mark Hazard (`@Mark020226`)")
+    st.markdown("**Ubicación:** 🇧🇴 La Paz, Bolivia")
     st.markdown("**Carrera:** Ing. Industrial - UMSA (Plan 2015)")
     st.markdown("---")
     
-    st.markdown("### 🎯 Enfoque Actual")
-    st.info("Re-aprendizaje activo + Ingesta inteligente de recursos + Validación de Empleabilidad & Bolivia.")
-    
+    st.markdown("### 🎯 Sistema Inteligente")
+    st.info("Segundo Cerebro con deduplicación automática, índice de empleabilidad y verificación para Bolivia.")
     st.markdown("---")
-    st.markdown("### ⚡ Acceso Rápido")
-    st.caption("269 recursos analizados con detección de duplicados.")
+    st.caption("v3.2 | Respaldado en GitHub & SQLite")
 
 # Top KPIs
 conn = get_db()
@@ -86,164 +107,170 @@ cur = conn.cursor()
 cur.execute("SELECT COUNT(*) FROM resources")
 total_resources = cur.fetchone()[0]
 
-cur.execute("SELECT COUNT(*) FROM resources WHERE duplicate_count > 1")
-repeated_items = cur.fetchone()[0]
+cur.execute("SELECT COUNT(*) FROM resources WHERE is_duplicate=1")
+total_duplicates = cur.fetchone()[0]
 
-cur.execute("SELECT COUNT(*) FROM resources WHERE has_certificate LIKE '%Certificado%'")
-cert_items = cur.fetchone()[0]
+cur.execute("SELECT COUNT(*) FROM resources WHERE direct_url IS NOT NULL AND direct_url != post_url AND direct_url != ''")
+direct_links_count = cur.fetchone()[0]
 
 cur.execute("SELECT COUNT(*) FROM academic_courses WHERE status='Aprobada'")
 courses_approved = cur.fetchone()[0]
 
-cur.execute("SELECT COUNT(*) FROM academic_courses")
-total_courses = cur.fetchone()[0]
-
 col1, col2, col3, col4 = st.columns(4)
 with col1:
-    st.metric("💡 Recursos en Biblioteca", f"{total_resources}", "Total en Segundo Cerebro")
+    st.metric("💡 Recursos Totales", f"{total_resources}", f"{total_resources - (total_duplicates // 2)} únicos")
 with col2:
-    st.metric("🔁 Recursos Repetidos", f"{repeated_items}", "Menciones cruzadas detectadas")
+    st.metric("⚠️ Recursos Repetidos", f"{total_duplicates}", "Detectados por la IA")
 with col3:
-    st.metric("🎓 Con Certificación", f"{cert_items}", "Validados ante reclutadores")
+    st.metric("🚀 Enlaces Directos Reales", f"{direct_links_count}", "Sitios web / GitHub / Drives")
 with col4:
-    st.metric("📚 Avance Malla UMSA", f"{courses_approved}/{total_courses}", f"{int((courses_approved/total_courses)*100)}% de carrera")
+    st.metric("🎓 Avance Malla UMSA", f"{courses_approved} / 54", f"{int((courses_approved/54)*100)}%")
 
 st.markdown("---")
 
 # Main Tabs
 tab1, tab2, tab3, tab4 = st.tabs([
-    "💡 Segundo Cerebro (Biblioteca de Recursos)",
+    "💡 Segundo Cerebro (Biblioteca Inteligente)",
     "🎓 Malla UMSA & Informática MIT",
     "📊 Hábitos & Energía Diaria",
     "💰 Finanzas (InvernovAH)"
 ])
 
 # ------------------------------------------------------------
-# TAB 1: SEGUNDO CEREBRO (SÚPER ENRIQUECIDO)
+# TAB 1: SEGUNDO CEREBRO (INTELIGENCIA AVANZADA)
 # ------------------------------------------------------------
 with tab1:
-    st.subheader("💡 Tu Biblioteca Inteligente de Recursos & Enlaces")
-    st.markdown("Con **detección automática de recursos repetidos**, **índice de empleabilidad real**, **acreditación para reclutadores** y **validación para Bolivia 🇧🇴**.")
+    st.subheader("💡 Biblioteca Inteligente de Recursos & Enlaces")
+    st.markdown("""
+    Cada recurso cuenta con **deduplicación automática** (te avisa si ya lo guardaste en otra publicación), 
+    **enlace directo al recurso real** (encontrado por la IA incluso si el creador no lo puso), 
+    **índice de empleabilidad**, **peso de certificación** y **disponibilidad para Bolivia 🇧🇴**.
+    """)
     
-    col_search, col_cat, col_filter_dup, col_filter_cert = st.columns([2, 1, 1, 1])
-    
+    # Filter controls
+    col_search, col_cat = st.columns([3, 2])
+    with col_search:
+        search_query = st.text_input("🔍 Buscar por palabra clave (Claude, NASA, NVIDIA, Python, Beca, CS50, n8n, etc.):", "")
+        
     cur.execute("SELECT DISTINCT category FROM resources WHERE category IS NOT NULL AND category != ''")
     categories = [r[0] for r in cur.fetchall()]
     
-    with col_search:
-        search_query = st.text_input("🔍 Buscar (ej. Claude, CS50, NASA, NVIDIA, Python, Beca):", "")
     with col_cat:
         cat_filter = st.selectbox("Categoría:", ["Todas"] + categories)
-    with col_filter_dup:
-        only_duplicates = st.checkbox("🔁 Solo recursos repetidos", value=False)
-    with col_filter_cert:
-        only_cert = st.checkbox("🎓 Solo con certificado", value=False)
         
-    # Query resources
+    col_f1, col_f2, col_f3, col_f4 = st.columns(4)
+    with col_f1:
+        only_direct = st.checkbox("🚀 Solo con enlace directo", value=False)
+    with col_f2:
+        only_cert = st.checkbox("🎓 Solo con certificación", value=False)
+    with col_f3:
+        only_bolivia = st.checkbox("🇧🇴 100% aplicable para Bolivia", value=False)
+    with col_f4:
+        dup_filter = st.selectbox("Filtro de Duplicados:", ["Todos", "Ocultar Repetidos (Solo Únicos)", "Solo Repetidos"])
+        
+    # Build Query
     query = """
-    SELECT id, title, category, source, author, date_added, url, post_url, direct_url, summary, ai_summary,
-           canonical_name, duplicate_count, duplicate_mentions, employability_score, employability_analysis,
-           has_certificate, recruiter_weight, bolivia_status, bolivia_details, published_date, saved_date, status
+    SELECT id, title, category, source, author, date_added, date_saved, date_published,
+           url, post_url, direct_url, is_duplicate, duplicate_count, duplicate_sources,
+           found_by_ai, ai_what_it_does, ai_how_it_helps, has_certification,
+           recruiter_weight, employability_score, bolivia_eligible, summary, status
     FROM resources 
     WHERE 1=1
     """
     params = []
     
     if search_query:
-        query += " AND (title LIKE ? OR summary LIKE ? OR ai_summary LIKE ? OR canonical_name LIKE ? OR direct_url LIKE ?)"
+        query += " AND (title LIKE ? OR summary LIKE ? OR ai_what_it_does LIKE ? OR ai_how_it_helps LIKE ? OR direct_url LIKE ?)"
         params.extend([f"%{search_query}%", f"%{search_query}%", f"%{search_query}%", f"%{search_query}%", f"%{search_query}%"])
     if cat_filter != "Todas":
         query += " AND category = ?"
         params.append(cat_filter)
-    if only_duplicates:
-        query += " AND duplicate_count > 1"
+    if only_direct:
+        query += " AND direct_url IS NOT NULL AND direct_url != post_url AND direct_url != ''"
     if only_cert:
-        query += " AND has_certificate LIKE '%Certificado%'"
+        query += " AND has_certification LIKE '%Sí%'"
+    if only_bolivia:
+        query += " AND bolivia_eligible LIKE '%✅%'"
+    if dup_filter == "Ocultar Repetidos (Solo Únicos)":
+        query += " GROUP BY direct_url_clean"
+    elif dup_filter == "Solo Repetidos":
+        query += " AND is_duplicate = 1"
         
-    query += " ORDER BY employability_score DESC, date_added DESC LIMIT 60"
+    query += " ORDER BY date_added DESC LIMIT 60"
     
     df_res = pd.read_sql_query(query, conn, params=params)
-    st.write(f"Mostrando **{len(df_res)}** recursos encontrados (ordenados por mayor empleabilidad y fecha):")
+    st.write(f"Mostrando **{len(df_res)}** recursos encontrados:")
     
     # Display cards
     for idx, row in df_res.iterrows():
-        dup_count = row['duplicate_count']
         has_direct = row['direct_url'] and row['direct_url'] != row['post_url']
+        is_dup = row['is_duplicate'] == 1
+        found_ai = row['found_by_ai'] == 1
         
-        with st.expander(f"[{row['category']}] {row['canonical_name'] or row['title']} (Empleabilidad: {row['employability_score']}%)"):
+        # Card Header
+        with st.expander(f"{row['category']} | {row['title']}"):
             
-            # 1. Duplicate Warning Banner
-            if dup_count > 1:
-                st.markdown(f"""
-                <div class="dup-box">
-                    <strong>🔁 RECURSO REPETIDO / YA VISTO EN OTRA PUBLICACIÓN:</strong><br>
-                    Este recurso real (<em>{row['canonical_name']}</em>) ya lo tienes guardado en un total de <strong>{dup_count} publicaciones</strong> diferentes.
-                </div>
-                """, unsafe_allow_html=True)
+            # Badges Bar
+            badges_html = ""
+            if is_dup:
+                badges_html += f'<span class="badge-dup">⚠️ RECURSO REPETIDO (Guardado en {row["duplicate_count"]} publicaciones)</span>'
+            if found_ai:
+                badges_html += '<span class="badge-ai-found">🔍 ENLACE REAL BUSCADO POR IA (No estaba en el post)</span>'
+            if "✅" in str(row['bolivia_eligible']):
+                badges_html += '<span class="badge-bolivia">🇧🇴 APTO PARA BOLIVIA</span>'
                 
-                # Show other mentions expander
-                if row['duplicate_mentions']:
-                    try:
-                        other_list = json.loads(row['duplicate_mentions'])
-                        with st.expander(f"👁️ Ver las otras {len(other_list)} publicaciones donde también guardaste esto"):
-                            for o in other_list[:5]:
-                                st.markdown(f"• **{o.get('title')}** — por `{o.get('author')}` (Guardado: {o.get('saved_date')}) | [Ver post]({o.get('post_url')})")
-                    except Exception:
-                        pass
-                        
-            # 2. AI Value Summary Box
-            if row['ai_summary']:
-                st.markdown(f"""
-                <div class="ai-box">
-                    <strong>💡 Lo que te aporta este recurso:</strong><br>
-                    {row['ai_summary']}
-                </div>
-                """, unsafe_allow_html=True)
+            if badges_html:
+                st.markdown(f"<div>{badges_html}</div>", unsafe_allow_html=True)
+                st.markdown("")
                 
-            # 3. Employability & Recruiter Weight Section
-            st.markdown("#### 🎯 Índice de Empleabilidad & Mercado Laboral:")
-            col_emp1, col_emp2 = st.columns([1, 2])
-            with col_emp1:
-                st.progress(row['employability_score'] / 100.0)
-                st.caption(f"Score de Retorno/Empleabilidad: **{row['employability_score']}%**")
-                st.markdown(f"**Certificación:** `{row['has_certificate']}`")
-                st.markdown(f"**Peso en CV/ATS:** {row['recruiter_weight']}")
-            with col_emp2:
-                st.markdown(row['employability_analysis'])
+            # If duplicate, show alert with other posts
+            if is_dup and row['duplicate_sources']:
+                st.warning(f"ℹ️ **Aviso de Duplicado:** Este mismo recurso ya lo habías guardado en estas otras publicaciones:\n\n{row['duplicate_sources']}")
                 
-            # 4. Bolivia Availability Section
+            # 1. AI Value: What it does & How it helps
+            st.markdown(f"""
+            <div class="ai-what-box">
+                <strong>🛠️ ¿Qué te permite hacer este recurso?</strong><br/>
+                {row['ai_what_it_does']}
+            </div>
+            <div class="ai-helps-box">
+                <strong>💡 ¿En qué te ayuda a ti (Ingeniería / Carrera / NEXUS)?</strong><br/>
+                {row['ai_how_it_helps']}
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # 2. Market Value & Employability Table
+            col_t1, col_t2 = st.columns(2)
+            with col_t1:
+                st.markdown(f"🎓 **Certificación Oficial:** `{row['has_certification']}`")
+                st.markdown(f"⭐ **Peso ante Reclutadores:** {row['recruiter_weight']}")
+            with col_t2:
+                st.markdown(f"📈 **Índice de Empleabilidad:** `{row['employability_score']}`")
+                st.markdown(f"🇧🇴 **Disponibilidad para Bolivia:** {row['bolivia_eligible']}")
+                
             st.markdown("---")
-            st.markdown("#### 🇧🇴 Disponibilidad para Bolivia:")
-            col_bol1, col_bol2 = st.columns([1, 2])
-            with col_bol1:
-                st.markdown(f"**Estado:** `{row['bolivia_status']}`")
-            with col_bol2:
-                st.markdown(f"ℹ️ {row['bolivia_details']}")
-                
-            # 5. Direct Action Links
-            st.markdown("---")
-            st.markdown("#### 🔗 Enlaces de Acceso:")
-            col_b1, col_b2 = st.columns([1, 1])
-            with col_b1:
-                if row['direct_url']:
+            
+            # 3. Links Section
+            st.markdown("#### 🔗 Enlaces de Acceso Rápido:")
+            col_link1, col_link2 = st.columns([1, 1])
+            with col_link1:
+                if has_direct:
                     st.markdown(f"👉 **[🚀 ABRIR RECURSO REAL DIRECTO]({row['direct_url']})**")
-                    st.caption(f"URL de destino: `{row['direct_url'][:75]}`")
-            with col_b2:
+                    st.caption(f"Destino real: `{row['direct_url'][:75]}`")
+                else:
+                    st.markdown(f"👉 **[🚀 ABRIR ENLACE DEL RECURSO]({row['url']})**")
+            with col_link2:
                 if row['post_url']:
                     st.markdown(f"📱 **[Ver Publicación / Reel Original en Instagram]({row['post_url']})**")
-            
-            # 6. Double Date & Metadata
+                    st.caption("Video o mensaje del creador")
+                    
             st.markdown("---")
-            col_meta1, col_meta2, col_meta3 = st.columns(3)
-            with col_meta1:
-                st.markdown(f"**👤 Creador / Cuenta:** `{row['author'] or row['source']}`")
-            with col_meta2:
-                st.markdown(f"**📅 Guardado el:** `{row['saved_date'] or row['date_added']}`")
-            with col_meta3:
-                st.markdown(f"**📢 Publicación:** `{row['published_date']}`")
-                
-            # 7. Original Caption
-            with st.expander("📝 Ver descripción original completa del creador"):
+            
+            # 4. Dates & Author Metadata
+            st.caption(f"👤 **Publicado por:** `{row['author'] or row['source']}` | 📅 **Guardado por ti:** {row['date_saved'] or row['date_added']} | ⏱️ **Fecha publicación:** {row['date_published']} | Estado: `{row['status']}`")
+            
+            # 5. Original caption in collapsible expander
+            with st.expander("📝 Ver descripción original del creador (texto del video/post)"):
                 st.text(row['summary'] if row['summary'] else "Sin descripción adicional.")
                 
     st.markdown("---")
@@ -252,15 +279,16 @@ with tab1:
         f_url = st.text_input("URL del recurso real / página / video:")
         f_title = st.text_input("Título descriptivo:")
         f_cat = st.selectbox("Categoría:", categories if categories else ["🤖 Inteligencia Artificial & Agentes"])
-        f_summary = st.text_area("Notas / Lo que te aporta:")
+        f_what = st.text_input("¿Qué permite hacer?")
+        f_helps = st.text_area("¿En qué te ayuda a ti?")
         submit_res = st.form_submit_button("Guardar en Segundo Cerebro")
         
         if submit_res and f_url:
             now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
             cur.execute("""
-            INSERT INTO resources (url, direct_url, post_url, title, summary, ai_summary, category, date_added, saved_date, published_date, source, author, canonical_name, duplicate_count, employability_score, employability_analysis, has_certificate, recruiter_weight, bolivia_status, bolivia_details, status)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Entrada Manual', 'Mark Hazard', ?, 1, 75, 'Añadido por Mark para estudio personal.', '🛠️ Habilidad Práctica', '🟡 Medio', '🇧🇴 100% Accesible desde Bolivia', 'Acceso directo guardado por el usuario.', 'Pendiente')
-            """, (f_url, f_url, f_url, f_title or f_url, f_summary, f"💡 **Nota de Mark:** {f_summary}", f_cat, now_str, now_str, now_str, f_title or f_url))
+            INSERT INTO resources (url, direct_url, post_url, title, summary, ai_what_it_does, ai_how_it_helps, category, date_added, date_saved, date_published, source, author, status, bolivia_eligible)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Entrada Manual', 'Mark Hazard', 'Pendiente', '✅ Disponible online')
+            """, (f_url, f_url, f_url, f_title or f_url, f_what, f_what, f_helps, f_cat, now_str, now_str, now_str[:10]))
             conn.commit()
             st.success("¡Recurso añadido exitosamente a tu Segundo Cerebro!")
             st.rerun()
