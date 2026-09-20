@@ -169,6 +169,7 @@ cert_count = safe_int(cur.fetchone()[0], 0)
 
 with st.sidebar:
     filter_dup = st.checkbox("⚠️ Solo recursos repetidos / multi-mencionados", value=False)
+    filter_mixed = st.checkbox("📦 Solo publicaciones compuestas (con novedades)", value=False)
     filter_high_emp = st.checkbox("🔥 Solo Alta Empleabilidad (>= 85%)", value=False)
     filter_cert = st.checkbox("📜 Solo con Certificación Oficial", value=False)
     filter_bolivia = st.checkbox("🇧🇴 Solo 100% elegibles en Bolivia", value=False)
@@ -218,7 +219,8 @@ with tab1:
     SELECT id, title, category, author, date_added, url, post_url, direct_url_clean,
            ai_what_it_does, ai_how_it_helps, employability_index, employability_details,
            has_certification, recruiter_weight, bolivia_eligible, bolivia_details,
-           is_duplicate, duplicate_count, duplicate_sources, found_by_ai, summary
+           is_duplicate, duplicate_count, duplicate_sources, found_by_ai, summary,
+           has_mixed_resources, new_resources_list, repeated_resources_list
     FROM resources
     WHERE 1=1
     """
@@ -232,6 +234,8 @@ with tab1:
         params.append(cat_filter)
     if filter_dup:
         query += " AND is_duplicate = 1"
+    if filter_mixed:
+        query += " AND has_mixed_resources = 1"
     if filter_high_emp:
         query += " AND CAST(employability_index AS INTEGER) >= 85"
     if filter_cert:
@@ -276,6 +280,9 @@ with tab1:
         is_dup = safe_int(row.get('is_duplicate'), 0) == 1
         found_by_ai = safe_int(row.get('found_by_ai'), 0) == 1
         dup_count = safe_int(row.get('duplicate_count'), 1)
+        has_mixed = safe_int(row.get('has_mixed_resources'), 0) == 1
+        new_res_list = safe_str(row.get('new_resources_list'), "")
+        rep_res_list = safe_str(row.get('repeated_resources_list'), "")
         
         # Safe employability score (strictly integer between 0 and 100)
         emp_score = safe_int(row.get('employability_index'), 70)
@@ -303,8 +310,9 @@ with tab1:
         
         # Expander Title with Key Badges
         dup_tag = " [⚠️ REPETIDO]" if is_dup else ""
+        mixed_tag = " [📦 MULTI-HERRAMIENTAS]" if has_mixed else ""
         ai_tag = " [🔍 Link IA]" if found_by_ai else ""
-        expander_title = f"{category} | {title}{dup_tag}{ai_tag} — ({emp_score}% Empleabilidad)"
+        expander_title = f"{category} | {title}{dup_tag}{mixed_tag}{ai_tag} — ({emp_score}% Empleabilidad)"
         
         with st.expander(expander_title):
             # 1. BADGES ROW
@@ -315,6 +323,8 @@ with tab1:
                 badge_html += f"<span class='badge badge-dup'>⚠️ Repetido ({dup_count} publicaciones en tu biblioteca)</span>"
             if found_by_ai:
                 badge_html += f"<span class='badge badge-ai'>🔍 Enlace real encontrado por la IA</span>"
+            if has_mixed:
+                badge_html += "<span class='badge' style='background:#ecfdf5; color:#065f46; border:1px solid #10b981;'>📦 Multi-Herramientas (Novedades + Repetidos)</span>"
                 
             if bolivia_ok:
                 badge_html += f"<span class='badge badge-bolivia-ok'>{bolivia_elig}</span>"
@@ -323,6 +333,14 @@ with tab1:
                 
             badge_html += "</div>"
             st.markdown(badge_html, unsafe_allow_html=True)
+
+            # COMPOSITE MULTI-TOOL BREAKDOWN (HIGHLIGHTING NEW VS REPEATED)
+            if has_mixed and (new_res_list or rep_res_list):
+                if new_res_list and "Ninguno" not in new_res_list:
+                    st.success(f"**🟢 RECURSOS NUEVOS descubiertos en este post (No repetidos en tu biblioteca):**\n\n{new_res_list}")
+                if rep_res_list and "Ninguno" not in rep_res_list:
+                    st.warning(f"**⚠️ Recursos que YA TENÍAS guardados en tu biblioteca:**\n\n{rep_res_list}")
+                st.markdown("---")
             
             # 2. DIRECT ACTION BUTTONS (Clean & Prominent)
             col_act1, col_act2 = st.columns([1, 1])
@@ -403,17 +421,39 @@ with tab1:
         submit_res = st.form_submit_button("Guardar en Segundo Cerebro")
         
         if submit_res and f_url:
-            now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
-            cur.execute("""
-            INSERT INTO resources (url, direct_url_clean, post_url, title, summary, ai_what_it_does, ai_how_it_helps,
-                                   employability_index, employability_details, has_certification, recruiter_weight,
-                                   bolivia_eligible, bolivia_details, category, date_added, source, author, status)
-            VALUES (?, ?, ?, ?, ?, ?, ?, 80, 'Evaluado manualmente.', 'Por verificar', 'Portafolio',
-                    '✅ 100% Disponible en Bolivia', 'Agregado manualmente.', ?, ?, 'Entrada Manual', 'Mark Hazard', 'Pendiente')
-            """, (f_url, f_url, f_url, f_title or f_url, f_notes, f"Recurso manual: {f_title}", f_notes, f_cat, now_str))
-            conn.commit()
-            st.success("¡Recurso añadido exitosamente!")
-            st.rerun()
+            from src.database.dedup_engine import analyze_against_db, format_mixed_markdown
+            analysis = analyze_against_db(cur, f"{f_title} {f_notes}", f_url, f_url)
+            
+            if analysis["status"] == "PURE_DUPLICATE":
+                st.warning(f"⚠️ **Publicación descartada automáticamente para evitar duplicados:**\n\n{analysis['reason']}")
+            elif analysis["status"] == "MIXED":
+                new_md, rep_md = format_mixed_markdown(analysis["new_resources"], analysis["repeated_resources"])
+                now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
+                cur.execute("""
+                INSERT INTO resources (url, direct_url_clean, post_url, title, summary, ai_what_it_does, ai_how_it_helps,
+                                       employability_index, employability_details, has_certification, recruiter_weight,
+                                       bolivia_eligible, bolivia_details, category, date_added, source, author, status,
+                                       has_mixed_resources, new_resources_list, repeated_resources_list)
+                VALUES (?, ?, ?, ?, ?, ?, ?, 85, 'Recurso compuesto evaluado por IA.', 'Por verificar', 'Portafolio',
+                        '✅ 100% Disponible en Bolivia', 'Agregado manualmente.', ?, ?, 'Entrada Manual', 'Mark Hazard', 'Pendiente',
+                        1, ?, ?)
+                """, (f_url, f_url, f_url, f_title or f_url, f_notes, f"Recurso: {f_title}", f_notes, f_cat, now_str, new_md, rep_md))
+                conn.commit()
+                st.success("✅ Publicación guardada: Se detectaron recursos nuevos y se identificaron los repetidos.")
+                st.rerun()
+            else:
+                now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
+                cur.execute("""
+                INSERT INTO resources (url, direct_url_clean, post_url, title, summary, ai_what_it_does, ai_how_it_helps,
+                                       employability_index, employability_details, has_certification, recruiter_weight,
+                                       bolivia_eligible, bolivia_details, category, date_added, source, author, status,
+                                       has_mixed_resources)
+                VALUES (?, ?, ?, ?, ?, ?, ?, 80, 'Evaluado manualmente.', 'Por verificar', 'Portafolio',
+                        '✅ 100% Disponible en Bolivia', 'Agregado manualmente.', ?, ?, 'Entrada Manual', 'Mark Hazard', 'Pendiente', 0)
+                """, (f_url, f_url, f_url, f_title or f_url, f_notes, f"Recurso manual: {f_title}", f_notes, f_cat, now_str))
+                conn.commit()
+                st.success("¡Recurso añadido exitosamente!")
+                st.rerun()
 
 # ------------------------------------------------------------
 # TAB 2: MALLA UMSA & MIT

@@ -15,7 +15,7 @@ def init_db():
     conn = get_connection()
     cursor = conn.cursor()
     
-    # 1. Knowledge Base / Resources
+    # 1. Knowledge Base / Resources (Full Typed Schema)
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS resources (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -25,8 +25,31 @@ def init_db():
         category TEXT,
         date_added TEXT,
         source TEXT,
+        author TEXT,
         status TEXT DEFAULT 'Pendiente',
-        notes TEXT
+        notes TEXT,
+        direct_url TEXT,
+        post_url TEXT,
+        direct_url_clean TEXT,
+        canonical_key TEXT,
+        canonical_name TEXT,
+        found_by_ai INTEGER DEFAULT 0,
+        ai_what_it_does TEXT,
+        ai_how_it_helps TEXT,
+        employability_index INTEGER DEFAULT 70,
+        employability_details TEXT,
+        has_certification TEXT,
+        recruiter_weight TEXT,
+        bolivia_eligible TEXT,
+        bolivia_details TEXT,
+        is_duplicate INTEGER DEFAULT 0,
+        duplicate_count INTEGER DEFAULT 1,
+        duplicate_sources TEXT,
+        date_published TEXT,
+        date_saved TEXT,
+        has_mixed_resources INTEGER DEFAULT 0,
+        new_resources_list TEXT,
+        repeated_resources_list TEXT
     )
     """)
     
