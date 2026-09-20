@@ -4,6 +4,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import os
+import re
 from datetime import datetime
 
 # Page Config
@@ -23,6 +24,40 @@ def get_db():
     conn.row_factory = sqlite3.Row
     return conn
 
+# ------------------------------------------------------------
+# DEFENSIVE TYPE-SAFETY HELPERS (PREVENTS TYPEERRORS PERMANENTLY)
+# ------------------------------------------------------------
+def safe_int(v, default=0):
+    try:
+        if v is None or pd.isna(v):
+            return default
+        if isinstance(v, str):
+            clean = re.sub(r'[^\d.]', '', v)
+            if not clean:
+                return default
+            return int(float(clean))
+        return int(float(v))
+    except Exception:
+        return default
+
+def safe_float(v, default=0.0):
+    try:
+        if v is None or pd.isna(v):
+            return default
+        if isinstance(v, str):
+            clean = re.sub(r'[^\d.]', '', v)
+            if not clean:
+                return default
+            return float(clean)
+        return float(v)
+    except Exception:
+        return default
+
+def safe_str(v, default=""):
+    if v is None or pd.isna(v):
+        return default
+    return str(v).strip()
+
 # Clean, accessible styling
 st.markdown("""
 <style>
@@ -36,9 +71,9 @@ st.markdown("""
     }
     .badge {
         display: inline-block;
-        padding: 3px 10px;
+        padding: 4px 10px;
         border-radius: 12px;
-        font-size: 11px;
+        font-size: 11.5px;
         font-weight: 600;
         margin-right: 6px;
         margin-bottom: 6px;
@@ -70,6 +105,7 @@ st.markdown("""
         border-radius: 0 6px 6px 0;
         margin: 8px 0;
         font-size: 13.5px;
+        color: #1e293b;
     }
     .box-how {
         background-color: #f0fdf4;
@@ -78,6 +114,7 @@ st.markdown("""
         border-radius: 0 6px 6px 0;
         margin: 8px 0;
         font-size: 13.5px;
+        color: #064e3b;
     }
     .direct-link-btn {
         display: inline-block;
@@ -111,25 +148,24 @@ with st.sidebar:
     st.markdown("**Usuario:** Mark Hazard (`@Mark020226`)")
     st.markdown("**Ubicación:** 🇧🇴 Bolivia | Ing. Industrial UMSA")
     st.markdown("---")
-    
     st.markdown("### 🔍 Filtros Globales de Recursos")
     st.caption("Filtra tu Segundo Cerebro según tus prioridades:")
 
 conn = get_db()
 cur = conn.cursor()
 
-# Get metrics
+# Get metrics safely
 cur.execute("SELECT COUNT(*) FROM resources")
-total_res = cur.fetchone()[0]
+total_res = safe_int(cur.fetchone()[0], 0)
 
 cur.execute("SELECT COUNT(*) FROM resources WHERE is_duplicate = 1")
-dup_res_count = cur.fetchone()[0]
+dup_res_count = safe_int(cur.fetchone()[0], 0)
 
-cur.execute("SELECT COUNT(*) FROM resources WHERE employability_index >= 85")
-high_employability_count = cur.fetchone()[0]
+cur.execute("SELECT COUNT(*) FROM resources WHERE CAST(employability_index AS INTEGER) >= 85")
+high_employability_count = safe_int(cur.fetchone()[0], 0)
 
 cur.execute("SELECT COUNT(*) FROM resources WHERE has_certification LIKE '%Certificado%'")
-cert_count = cur.fetchone()[0]
+cert_count = safe_int(cur.fetchone()[0], 0)
 
 with st.sidebar:
     filter_dup = st.checkbox("⚠️ Solo recursos repetidos / multi-mencionados", value=False)
@@ -197,44 +233,56 @@ with tab1:
     if filter_dup:
         query += " AND is_duplicate = 1"
     if filter_high_emp:
-        query += " AND employability_index >= 85"
+        query += " AND CAST(employability_index AS INTEGER) >= 85"
     if filter_cert:
         query += " AND has_certification LIKE '%Certificado%'"
     if filter_bolivia:
         query += " AND bolivia_eligible LIKE '%100% Disponible%'"
         
-    query += " ORDER BY employability_index DESC, date_added DESC LIMIT 60"
+    query += " ORDER BY CAST(employability_index AS INTEGER) DESC, date_added DESC LIMIT 60"
     
     df_res = pd.read_sql_query(query, conn, params=params)
     st.write(f"Mostrando **{len(df_res)}** recursos encontrados:")
     
     # Render Resources
     for idx, row in df_res.iterrows():
-        is_dup = int(row['is_duplicate'] or 0) == 1
-        found_by_ai = int(row['found_by_ai'] or 0) == 1
+        is_dup = safe_int(row.get('is_duplicate'), 0) == 1
+        found_by_ai = safe_int(row.get('found_by_ai'), 0) == 1
+        dup_count = safe_int(row.get('duplicate_count'), 1)
         
-        try:
-            emp_score = int(float(row['employability_index'])) if pd.notna(row['employability_index']) else 70
-        except (ValueError, TypeError):
-            emp_score = 70
+        # Safe employability score (strictly integer between 0 and 100)
+        emp_score = safe_int(row.get('employability_index'), 70)
         emp_score = max(0, min(100, emp_score))
+        progress_val = float(emp_score) / 100.0
         
-        try:
-            dup_count = int(row['duplicate_count']) if pd.notna(row['duplicate_count']) else 1
-        except (ValueError, TypeError):
-            dup_count = 1
-            
-        bolivia_ok = "100%" in str(row['bolivia_eligible'] or "")
+        category = safe_str(row.get('category'), "General")
+        title = safe_str(row.get('title'), "Recurso")
+        author = safe_str(row.get('author'), "Desconocido")
+        date_added = safe_str(row.get('date_added'), "")
+        direct_url = safe_str(row.get('direct_url_clean') or row.get('url'), "")
+        post_url = safe_str(row.get('post_url'), "")
+        
+        ai_what = safe_str(row.get('ai_what_it_does'), "Recurso de aprendizaje e investigación.")
+        ai_how = safe_str(row.get('ai_how_it_helps'), "Aporta herramientas para tu formación técnica.")
+        emp_details = safe_str(row.get('employability_details'), "Demanda activa en el mercado laboral.")
+        has_cert = safe_str(row.get('has_certification'), "No especificado")
+        rec_weight = safe_str(row.get('recruiter_weight'), "Portafolio Práctico")
+        bolivia_elig = safe_str(row.get('bolivia_eligible'), "✅ 100% Disponible en Bolivia")
+        bolivia_details = safe_str(row.get('bolivia_details'), "")
+        dup_sources = safe_str(row.get('duplicate_sources'), "")
+        summary_raw = safe_str(row.get('summary'), "")
+        
+        bolivia_ok = "100%" in bolivia_elig
         
         # Expander Title with Key Badges
         dup_tag = " [⚠️ REPETIDO]" if is_dup else ""
         ai_tag = " [🔍 Link IA]" if found_by_ai else ""
-        expander_title = f"{row['category']} | {row['title']}{dup_tag}{ai_tag} — ({emp_score}% Empleabilidad)"
+        expander_title = f"{category} | {title}{dup_tag}{ai_tag} — ({emp_score}% Empleabilidad)"
         
         with st.expander(expander_title):
             # 1. BADGES ROW
             badge_html = f"<div style='margin-bottom: 12px;'>"
-            badge_html += f"<span class='badge' style='background:#f1f5f9; color:#334155;'>🏷️ {row['category']}</span>"
+            badge_html += f"<span class='badge' style='background:#f1f5f9; color:#334155;'>🏷️ {category}</span>"
             
             if is_dup:
                 badge_html += f"<span class='badge badge-dup'>⚠️ Repetido ({dup_count} publicaciones en tu biblioteca)</span>"
@@ -242,9 +290,9 @@ with tab1:
                 badge_html += f"<span class='badge badge-ai'>🔍 Enlace real encontrado por la IA</span>"
                 
             if bolivia_ok:
-                badge_html += f"<span class='badge badge-bolivia-ok'>{row['bolivia_eligible']}</span>"
+                badge_html += f"<span class='badge badge-bolivia-ok'>{bolivia_elig}</span>"
             else:
-                badge_html += f"<span class='badge badge-bolivia-warn'>{row['bolivia_eligible']}</span>"
+                badge_html += f"<span class='badge badge-bolivia-warn'>{bolivia_elig}</span>"
                 
             badge_html += "</div>"
             st.markdown(badge_html, unsafe_allow_html=True)
@@ -252,18 +300,17 @@ with tab1:
             # 2. DIRECT ACTION BUTTONS (Clean & Prominent)
             col_act1, col_act2 = st.columns([1, 1])
             with col_act1:
-                target_url = row['direct_url_clean'] or row['url']
                 st.markdown(f"""
-                <a href="{target_url}" target="_blank" class="direct-link-btn">
+                <a href="{direct_url}" target="_blank" class="direct-link-btn">
                     🚀 ABRIR RECURSO REAL DIRECTO
                 </a>
                 """, unsafe_allow_html=True)
-                st.caption(f"Destino directo: `{target_url[:65]}`")
+                st.caption(f"Destino directo: `{direct_url[:65]}`")
                 
             with col_act2:
-                if row['post_url'] and "instagram.com" in row['post_url']:
+                if post_url and "instagram.com" in post_url:
                     st.markdown(f"""
-                    <a href="{row['post_url']}" target="_blank" class="post-link-btn">
+                    <a href="{post_url}" target="_blank" class="post-link-btn">
                         📱 Ver Video/Post Original en Instagram
                     </a>
                     """, unsafe_allow_html=True)
@@ -277,11 +324,11 @@ with tab1:
             st.markdown(f"""
             <div class="box-what">
                 <strong>⚙️ ¿Qué es y qué te permite hacer?</strong><br/>
-                {row['ai_what_it_does']}
+                {ai_what}
             </div>
             <div class="box-how">
                 <strong>🎯 ¿Cómo te ayuda en tu formación (Ing. Industrial + Tech)?</strong><br/>
-                {row['ai_how_it_helps']}
+                {ai_how}
             </div>
             """, unsafe_allow_html=True)
             
@@ -290,34 +337,34 @@ with tab1:
             col_m1, col_m2, col_m3 = st.columns(3)
             with col_m1:
                 st.markdown(f"**💼 Índice de Empleabilidad:**")
-                st.progress(float(emp_score) / 100.0)
-                st.caption(f"**{emp_score}%** | {row['employability_details']}")
+                st.progress(progress_val)
+                st.caption(f"**{emp_score}%** | {emp_details}")
             with col_m2:
                 st.markdown(f"**📜 Certificación y Peso:**")
-                st.markdown(f"• **Tipo:** `{row['has_certification']}`")
-                st.markdown(f"• **Peso para Reclutador:** {row['recruiter_weight']}")
+                st.markdown(f"• **Tipo:** `{has_cert}`")
+                st.markdown(f"• **Peso para Reclutador:** {rec_weight}")
             with col_m3:
                 st.markdown(f"**🇧🇴 Disponibilidad en Bolivia:**")
-                st.markdown(f"• **Estado:** `{row['bolivia_eligible']}`")
-                st.caption(f"{row['bolivia_details']}")
+                st.markdown(f"• **Estado:** `{bolivia_elig}`")
+                st.caption(f"{bolivia_details}")
                 
             st.markdown("---")
             
             # 5. METADATA & REPEATED SOURCES INFO
             col_meta1, col_meta2 = st.columns(2)
             with col_meta1:
-                st.caption(f"👤 **Publicado por:** `{row['author']}`")
-                st.caption(f"📅 **Fecha de Publicación / Guardado:** `{row['date_added']}`")
+                st.caption(f"👤 **Publicado por:** `{author}`")
+                st.caption(f"📅 **Fecha de Publicación / Guardado:** `{date_added}`")
             with col_meta2:
-                if is_dup and row['duplicate_sources']:
+                if is_dup and dup_sources:
                     with st.expander("🔁 Ver en qué otras publicaciones apareció este recurso:"):
-                        sources_list = row['duplicate_sources'].split(" | ")
+                        sources_list = dup_sources.split(" | ")
                         for s in sources_list:
                             st.write(f"• {s}")
                             
             # 6. ORIGINAL TEXT (COLLAPSIBLE)
             with st.expander("📝 Ver pie de foto / texto original del creador"):
-                st.text(row['summary'] if row['summary'] else "Sin texto original adicional.")
+                st.text(summary_raw if summary_raw else "Sin texto original adicional.")
                 
     st.markdown("---")
     st.markdown("### ➕ Añadir Nuevo Enlace o Recurso")
