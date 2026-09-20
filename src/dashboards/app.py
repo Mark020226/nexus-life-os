@@ -239,10 +239,37 @@ with tab1:
     if filter_bolivia:
         query += " AND bolivia_eligible LIKE '%100% Disponible%'"
         
-    query += " ORDER BY CAST(employability_index AS INTEGER) DESC, date_added DESC LIMIT 60"
+    query += " ORDER BY CAST(employability_index AS INTEGER) DESC, date_added DESC"
     
-    df_res = pd.read_sql_query(query, conn, params=params)
-    st.write(f"Mostrando **{len(df_res)}** recursos encontrados:")
+    df_all_matching = pd.read_sql_query(query, conn, params=params)
+    total_matches = len(df_all_matching)
+    
+    col_count, col_per_page, col_page = st.columns([2, 1, 1])
+    
+    with col_per_page:
+        options = ["50", "100", f"Ver Todos ({total_matches})"] if total_matches > 50 else [f"Todos ({total_matches})"]
+        per_page_choice = st.selectbox("Mostrar por página:", options, index=0)
+        
+    if "Todos" in per_page_choice:
+        page_size = total_matches
+        total_pages = 1
+        current_page = 1
+    else:
+        page_size = int(per_page_choice)
+        total_pages = max(1, (total_matches + page_size - 1) // page_size)
+        with col_page:
+            current_page = st.number_input(f"Página (de {total_pages}):", min_value=1, max_value=total_pages, value=1, step=1)
+            
+    start_idx = (current_page - 1) * page_size
+    end_idx = min(start_idx + page_size, total_matches)
+    
+    df_res = df_all_matching.iloc[start_idx:end_idx]
+    
+    with col_count:
+        if total_matches > 0:
+            st.markdown(f"Mostrando recursos **{start_idx + 1} - {end_idx}** de **{total_matches}** catalogados:")
+        else:
+            st.markdown("No se encontraron recursos con los filtros seleccionados.")
     
     # Render Resources
     for idx, row in df_res.iterrows():
