@@ -210,10 +210,21 @@ with tab1:
     
     # Render Resources
     for idx, row in df_res.iterrows():
-        is_dup = row['is_duplicate'] == 1
-        found_by_ai = row['found_by_ai'] == 1
-        emp_score = row['employability_index'] or 70
-        bolivia_ok = "100%" in (row['bolivia_eligible'] or "")
+        is_dup = int(row['is_duplicate'] or 0) == 1
+        found_by_ai = int(row['found_by_ai'] or 0) == 1
+        
+        try:
+            emp_score = int(float(row['employability_index'])) if pd.notna(row['employability_index']) else 70
+        except (ValueError, TypeError):
+            emp_score = 70
+        emp_score = max(0, min(100, emp_score))
+        
+        try:
+            dup_count = int(row['duplicate_count']) if pd.notna(row['duplicate_count']) else 1
+        except (ValueError, TypeError):
+            dup_count = 1
+            
+        bolivia_ok = "100%" in str(row['bolivia_eligible'] or "")
         
         # Expander Title with Key Badges
         dup_tag = " [⚠️ REPETIDO]" if is_dup else ""
@@ -226,7 +237,7 @@ with tab1:
             badge_html += f"<span class='badge' style='background:#f1f5f9; color:#334155;'>🏷️ {row['category']}</span>"
             
             if is_dup:
-                badge_html += f"<span class='badge badge-dup'>⚠️ Repetido ({row['duplicate_count']} publicaciones en tu biblioteca)</span>"
+                badge_html += f"<span class='badge badge-dup'>⚠️ Repetido ({dup_count} publicaciones en tu biblioteca)</span>"
             if found_by_ai:
                 badge_html += f"<span class='badge badge-ai'>🔍 Enlace real encontrado por la IA</span>"
                 
@@ -279,7 +290,7 @@ with tab1:
             col_m1, col_m2, col_m3 = st.columns(3)
             with col_m1:
                 st.markdown(f"**💼 Índice de Empleabilidad:**")
-                st.progress(emp_score / 100)
+                st.progress(float(emp_score) / 100.0)
                 st.caption(f"**{emp_score}%** | {row['employability_details']}")
             with col_m2:
                 st.markdown(f"**📜 Certificación y Peso:**")
