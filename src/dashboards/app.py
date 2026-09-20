@@ -4,6 +4,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import os
+import json
 from datetime import datetime
 
 # Page Config
@@ -34,36 +35,31 @@ st.markdown("""
         margin: 8px 0;
         color: #14532d;
     }
-    .dup-badge {
+    .dup-box {
+        background-color: #fffbeb;
+        border-left: 4px solid #f59e0b;
+        padding: 10px 14px;
+        border-radius: 0 6px 6px 0;
+        margin: 8px 0;
+        color: #92400e;
+    }
+    .tech-pill {
         display: inline-block;
-        background-color: #fff7ed;
-        color: #c2410c;
-        border: 1px solid #fdba74;
+        background-color: #e0f2fe;
+        color: #0369a1;
         padding: 2px 8px;
-        border-radius: 12px;
-        font-size: 11px;
+        border-radius: 4px;
+        font-size: 0.85em;
         font-weight: 600;
         margin-right: 6px;
     }
-    .emp-badge {
+    .bolivia-pill {
         display: inline-block;
-        background-color: #eff6ff;
-        color: #1d4ed8;
-        border: 1px solid #bfdbfe;
+        background-color: #fef2f2;
+        color: #b91c1c;
         padding: 2px 8px;
-        border-radius: 12px;
-        font-size: 11px;
-        font-weight: 600;
-        margin-right: 6px;
-    }
-    .cert-badge {
-        display: inline-block;
-        background-color: #f5f3ff;
-        color: #6d28d9;
-        border: 1px solid #ddd6fe;
-        padding: 2px 8px;
-        border-radius: 12px;
-        font-size: 11px;
+        border-radius: 4px;
+        font-size: 0.85em;
         font-weight: 600;
     }
 </style>
@@ -77,11 +73,11 @@ with st.sidebar:
     st.markdown("---")
     
     st.markdown("### 🎯 Enfoque Actual")
-    st.info("Re-aprendizaje activo + Detección de duplicados + Métricas de empleabilidad objetivas.")
+    st.info("Re-aprendizaje activo + Ingesta inteligente de recursos + Validación de Empleabilidad & Bolivia.")
     
     st.markdown("---")
     st.markdown("### ⚡ Acceso Rápido")
-    st.caption("Base de datos con 269 recursos, índice de empleabilidad y fechas dobles.")
+    st.caption("269 recursos analizados con detección de duplicados.")
 
 # Top KPIs
 conn = get_db()
@@ -91,67 +87,63 @@ cur.execute("SELECT COUNT(*) FROM resources")
 total_resources = cur.fetchone()[0]
 
 cur.execute("SELECT COUNT(*) FROM resources WHERE duplicate_count > 1")
-total_dups = cur.fetchone()[0]
+repeated_items = cur.fetchone()[0]
 
-cur.execute("SELECT COUNT(*) FROM resources WHERE direct_url IS NOT NULL AND direct_url != post_url AND direct_url != ''")
-direct_links_count = cur.fetchone()[0]
+cur.execute("SELECT COUNT(*) FROM resources WHERE has_certificate LIKE '%Certificado%'")
+cert_items = cur.fetchone()[0]
 
 cur.execute("SELECT COUNT(*) FROM academic_courses WHERE status='Aprobada'")
 courses_approved = cur.fetchone()[0]
 
+cur.execute("SELECT COUNT(*) FROM academic_courses")
+total_courses = cur.fetchone()[0]
+
 col1, col2, col3, col4 = st.columns(4)
 with col1:
-    st.metric("💡 Recursos en Segundo Cerebro", f"{total_resources}", "Analizados con IA")
+    st.metric("💡 Recursos en Biblioteca", f"{total_resources}", "Total en Segundo Cerebro")
 with col2:
-    st.metric("⚠️ Recursos Repetidos en Posts", f"{total_dups}", "Agrupados automáticamente")
+    st.metric("🔁 Recursos Repetidos", f"{repeated_items}", "Menciones cruzadas detectadas")
 with col3:
-    st.metric("🚀 Enlaces Directos al Recurso", f"{direct_links_count}", "Sin pasar por la publicación")
+    st.metric("🎓 Con Certificación", f"{cert_items}", "Validados ante reclutadores")
 with col4:
-    st.metric("🎓 Avance Malla UMSA", f"{courses_approved} / 54", f"{int((courses_approved/54)*100)}% aprobado")
+    st.metric("📚 Avance Malla UMSA", f"{courses_approved}/{total_courses}", f"{int((courses_approved/total_courses)*100)}% de carrera")
 
 st.markdown("---")
 
 # Main Tabs
 tab1, tab2, tab3, tab4 = st.tabs([
-    "💡 Segundo Cerebro (Con Detección de Repetidos & Empleabilidad)",
+    "💡 Segundo Cerebro (Biblioteca de Recursos)",
     "🎓 Malla UMSA & Informática MIT",
     "📊 Hábitos & Energía Diaria",
     "💰 Finanzas (InvernovAH)"
 ])
 
 # ------------------------------------------------------------
-# TAB 1: SEGUNDO CEREBRO INTELIGENTE
+# TAB 1: SEGUNDO CEREBRO (SÚPER ENRIQUECIDO)
 # ------------------------------------------------------------
 with tab1:
-    st.subheader("💡 Biblioteca Inteligente con Detección de Duplicados e Índice Laboral")
-    st.markdown("""
-    Cada recurso ahora incluye:
-    - ⚠️ **Detección de duplicados:** Identifica si el recurso real ya te había aparecido en otras publicaciones.
-    - 📈 **Índice de Empleabilidad:** Porcentaje estimado con métricas reales de inserción y demanda en el mercado.
-    - 📜 **Certificación y Peso ante Reclutadores:** Si tiene validez oficial de Harvard, MIT, NVIDIA, NASA o Anthropic.
-    - 📅 **Fechas Dobles:** Fecha exacta en que se publicó el video/post y fecha en que lo guardaste.
-    """)
+    st.subheader("💡 Tu Biblioteca Inteligente de Recursos & Enlaces")
+    st.markdown("Con **detección automática de recursos repetidos**, **índice de empleabilidad real**, **acreditación para reclutadores** y **validación para Bolivia 🇧🇴**.")
     
-    col_search, col_cat, col_filter_dup, col_sort = st.columns([2, 1, 1, 1])
+    col_search, col_cat, col_filter_dup, col_filter_cert = st.columns([2, 1, 1, 1])
     
     cur.execute("SELECT DISTINCT category FROM resources WHERE category IS NOT NULL AND category != ''")
     categories = [r[0] for r in cur.fetchall()]
     
     with col_search:
-        search_query = st.text_input("🔍 Buscar (ej. Claude, NASA, NVIDIA, Python, CS50, Beca):", "")
+        search_query = st.text_input("🔍 Buscar (ej. Claude, CS50, NASA, NVIDIA, Python, Beca):", "")
     with col_cat:
         cat_filter = st.selectbox("Categoría:", ["Todas"] + categories)
     with col_filter_dup:
-        dup_filter = st.selectbox("Filtro de Duplicados:", ["Todos", "⚠️ Solo Repetidos", "✨ Solo Únicos", "🚀 Con Enlace Directo"])
-    with col_sort:
-        sort_by = st.selectbox("Ordenar por:", ["Más Recientes Guardados", "Mayor Empleabilidad", "Más Repetidos (Tendencia)"])
+        only_duplicates = st.checkbox("🔁 Solo recursos repetidos", value=False)
+    with col_filter_cert:
+        only_cert = st.checkbox("🎓 Solo con certificado", value=False)
         
-    # Build Query
+    # Query resources
     query = """
-    SELECT id, title, category, source, author, date_added, url, post_url, direct_url, 
-           summary, ai_summary, status, published_date, saved_date, 
-           canonical_key, canonical_name, duplicate_count, 
-           employability_index, employability_details, certification_status, recruiter_weight
+    SELECT id, title, category, source, author, date_added, url, post_url, direct_url, summary, ai_summary,
+           canonical_name, duplicate_count, duplicate_mentions, employability_score, employability_analysis,
+           has_certificate, recruiter_weight, bolivia_status, bolivia_details, published_date, saved_date, status
     FROM resources 
     WHERE 1=1
     """
@@ -163,96 +155,97 @@ with tab1:
     if cat_filter != "Todas":
         query += " AND category = ?"
         params.append(cat_filter)
-    if dup_filter == "⚠️ Solo Repetidos":
+    if only_duplicates:
         query += " AND duplicate_count > 1"
-    elif dup_filter == "✨ Solo Únicos":
-        query += " AND duplicate_count = 1"
-    elif dup_filter == "🚀 Con Enlace Directo":
-        query += " AND direct_url IS NOT NULL AND direct_url != post_url AND direct_url != ''"
+    if only_cert:
+        query += " AND has_certificate LIKE '%Certificado%'"
         
-    if sort_by == "Mayor Empleabilidad":
-        query += " ORDER BY employability_index DESC, date_added DESC LIMIT 60"
-    elif sort_by == "Más Repetidos (Tendencia)":
-        query += " ORDER BY duplicate_count DESC, date_added DESC LIMIT 60"
-    else:
-        query += " ORDER BY saved_date DESC LIMIT 60"
-        
+    query += " ORDER BY employability_score DESC, date_added DESC LIMIT 60"
+    
     df_res = pd.read_sql_query(query, conn, params=params)
-    st.write(f"Mostrando **{len(df_res)}** recursos encontrados:")
+    st.write(f"Mostrando **{len(df_res)}** recursos encontrados (ordenados por mayor empleabilidad y fecha):")
     
     # Display cards
     for idx, row in df_res.iterrows():
-        is_duplicate = row['duplicate_count'] > 1
+        dup_count = row['duplicate_count']
         has_direct = row['direct_url'] and row['direct_url'] != row['post_url']
         
-        # Header title
-        header_text = f"{row['category']} | {row['title'][:70]}"
-        if is_duplicate:
-            header_text = f"⚠️ [Repetido x{row['duplicate_count']}] " + header_text
+        with st.expander(f"[{row['category']}] {row['canonical_name'] or row['title']} (Empleabilidad: {row['employability_score']}%)"):
             
-        with st.expander(header_text):
-            # 1. Badges Bar
-            col_b1, col_b2, col_b3 = st.columns([1, 1, 1])
-            with col_b1:
-                if is_duplicate:
-                    st.markdown(f"⚠️ **Recurso repetido:** Aparece en **{row['duplicate_count']}** publicaciones distintas.")
-                else:
-                    st.markdown("✨ **Recurso Único:** Guardado 1 sola vez.")
-            with col_b2:
-                st.markdown(f"📈 **Empleabilidad:** `{row['employability_index']}`")
-            with col_b3:
-                st.markdown(f"📜 **Certificación:** `{row['certification_status']}`")
+            # 1. Duplicate Warning Banner
+            if dup_count > 1:
+                st.markdown(f"""
+                <div class="dup-box">
+                    <strong>🔁 RECURSO REPETIDO / YA VISTO EN OTRA PUBLICACIÓN:</strong><br>
+                    Este recurso real (<em>{row['canonical_name']}</em>) ya lo tienes guardado en un total de <strong>{dup_count} publicaciones</strong> diferentes.
+                </div>
+                """, unsafe_allow_html=True)
                 
-            st.markdown(f"👔 **Peso ante Reclutadores:** {row['recruiter_weight']}")
-            
+                # Show other mentions expander
+                if row['duplicate_mentions']:
+                    try:
+                        other_list = json.loads(row['duplicate_mentions'])
+                        with st.expander(f"👁️ Ver las otras {len(other_list)} publicaciones donde también guardaste esto"):
+                            for o in other_list[:5]:
+                                st.markdown(f"• **{o.get('title')}** — por `{o.get('author')}` (Guardado: {o.get('saved_date')}) | [Ver post]({o.get('post_url')})")
+                    except Exception:
+                        pass
+                        
             # 2. AI Value Summary Box
             if row['ai_summary']:
                 st.markdown(f"""
                 <div class="ai-box">
+                    <strong>💡 Lo que te aporta este recurso:</strong><br>
                     {row['ai_summary']}
                 </div>
                 """, unsafe_allow_html=True)
                 
-            # 3. Employability Evidence Details
-            if row['employability_details']:
-                st.info(f"📊 **Métricas Reales de Mercado:** {row['employability_details']}")
+            # 3. Employability & Recruiter Weight Section
+            st.markdown("#### 🎯 Índice de Empleabilidad & Mercado Laboral:")
+            col_emp1, col_emp2 = st.columns([1, 2])
+            with col_emp1:
+                st.progress(row['employability_score'] / 100.0)
+                st.caption(f"Score de Retorno/Empleabilidad: **{row['employability_score']}%**")
+                st.markdown(f"**Certificación:** `{row['has_certificate']}`")
+                st.markdown(f"**Peso en CV/ATS:** {row['recruiter_weight']}")
+            with col_emp2:
+                st.markdown(row['employability_analysis'])
                 
-            # 4. Action Buttons / Direct URLs
-            st.markdown("#### 🔗 Enlaces de Acceso Rápido:")
-            col_btn1, col_btn2 = st.columns([1, 1])
-            with col_btn1:
-                if has_direct:
+            # 4. Bolivia Availability Section
+            st.markdown("---")
+            st.markdown("#### 🇧🇴 Disponibilidad para Bolivia:")
+            col_bol1, col_bol2 = st.columns([1, 2])
+            with col_bol1:
+                st.markdown(f"**Estado:** `{row['bolivia_status']}`")
+            with col_bol2:
+                st.markdown(f"ℹ️ {row['bolivia_details']}")
+                
+            # 5. Direct Action Links
+            st.markdown("---")
+            st.markdown("#### 🔗 Enlaces de Acceso:")
+            col_b1, col_b2 = st.columns([1, 1])
+            with col_b1:
+                if row['direct_url']:
                     st.markdown(f"👉 **[🚀 ABRIR RECURSO REAL DIRECTO]({row['direct_url']})**")
-                    st.caption(f"Destino real: `{row['direct_url'][:75]}`")
-                else:
-                    st.markdown(f"👉 **[🚀 ABRIR ENLACE DEL RECURSO]({row['url']})**")
-            with col_btn2:
+                    st.caption(f"URL de destino: `{row['direct_url'][:75]}`")
+            with col_b2:
                 if row['post_url']:
                     st.markdown(f"📱 **[Ver Publicación / Reel Original en Instagram]({row['post_url']})**")
-                    
-            # 5. Double Dates & Author
-            st.markdown("---")
-            pub_str = row['published_date'] if row['published_date'] else "No disponible"
-            sav_str = row['saved_date'] if row['saved_date'] else row['date_added']
-            st.caption(f"📅 **Publicado originalmente:** `{pub_str}` | 💾 **Guardado por ti:** `{sav_str}` | 👤 **Autor:** `{row['author'] or row['source']}`")
             
-            # 6. Show other posts referencing the same resource if duplicated
-            if is_duplicate and row['canonical_key']:
-                with st.expander(f"🔁 Ver las otras publicaciones que hablan de este mismo recurso ({row['canonical_name']})"):
-                    cur.execute("""
-                    SELECT title, author, published_date, post_url 
-                    FROM resources 
-                    WHERE canonical_key = ? AND id != ?
-                    LIMIT 5
-                    """, (row['canonical_key'], row['id']))
-                    other_posts = cur.fetchall()
-                    for op in other_posts:
-                        st.markdown(f"- **{op['title']}** (por `{op['author']}`, publicado: `{op['published_date']}`) → [Ver post]({op['post_url']})")
-                        
-            # 7. Original caption
-            with st.expander("📝 Ver pie de foto / texto original"):
+            # 6. Double Date & Metadata
+            st.markdown("---")
+            col_meta1, col_meta2, col_meta3 = st.columns(3)
+            with col_meta1:
+                st.markdown(f"**👤 Creador / Cuenta:** `{row['author'] or row['source']}`")
+            with col_meta2:
+                st.markdown(f"**📅 Guardado el:** `{row['saved_date'] or row['date_added']}`")
+            with col_meta3:
+                st.markdown(f"**📢 Publicación:** `{row['published_date']}`")
+                
+            # 7. Original Caption
+            with st.expander("📝 Ver descripción original completa del creador"):
                 st.text(row['summary'] if row['summary'] else "Sin descripción adicional.")
-
+                
     st.markdown("---")
     st.markdown("### ➕ Añadir Nuevo Enlace Manualmente")
     with st.form("add_resource_form"):
@@ -265,9 +258,9 @@ with tab1:
         if submit_res and f_url:
             now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
             cur.execute("""
-            INSERT INTO resources (url, direct_url, post_url, title, summary, ai_summary, category, date_added, saved_date, published_date, source, author, status, duplicate_count, employability_index, certification_status, recruiter_weight)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Entrada Manual', 'Mark Hazard', 'Pendiente', 1, '85% (Habilidad Técnica)', 'No especificado', '⭐⭐⭐ Impacto Medio')
-            """, (f_url, f_url, f_url, f_title or f_url, f_summary, f"💡 **Nota de Mark:** {f_summary}", f_cat, now_str, now_str, now_str))
+            INSERT INTO resources (url, direct_url, post_url, title, summary, ai_summary, category, date_added, saved_date, published_date, source, author, canonical_name, duplicate_count, employability_score, employability_analysis, has_certificate, recruiter_weight, bolivia_status, bolivia_details, status)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Entrada Manual', 'Mark Hazard', ?, 1, 75, 'Añadido por Mark para estudio personal.', '🛠️ Habilidad Práctica', '🟡 Medio', '🇧🇴 100% Accesible desde Bolivia', 'Acceso directo guardado por el usuario.', 'Pendiente')
+            """, (f_url, f_url, f_url, f_title or f_url, f_summary, f"💡 **Nota de Mark:** {f_summary}", f_cat, now_str, now_str, now_str, f_title or f_url))
             conn.commit()
             st.success("¡Recurso añadido exitosamente a tu Segundo Cerebro!")
             st.rerun()
