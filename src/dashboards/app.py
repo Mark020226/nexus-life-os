@@ -14,7 +14,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Database path
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 DB_PATH = os.path.join(BASE_DIR, "data", "nexus.db")
 
@@ -32,6 +31,17 @@ st.markdown("""
         border-radius: 8px;
         padding: 16px;
     }
+    .dup-badge {
+        display: inline-block;
+        background-color: #fef3c7;
+        color: #92400e;
+        font-weight: 700;
+        font-size: 11px;
+        padding: 3px 8px;
+        border-radius: 4px;
+        border: 1px solid #fde68a;
+        margin-bottom: 6px;
+    }
     .ai-box {
         background-color: #f0fdf4;
         border-left: 4px solid #16a34a;
@@ -40,25 +50,12 @@ st.markdown("""
         margin: 8px 0;
         color: #14532d;
     }
-    .direct-btn {
-        display: inline-block;
-        background-color: #2563eb;
-        color: white !important;
-        font-weight: 600;
-        padding: 6px 14px;
+    .market-box {
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
         border-radius: 6px;
-        text-decoration: none !important;
-        margin-right: 10px;
-    }
-    .source-btn {
-        display: inline-block;
-        background-color: #f1f5f9;
-        color: #475569 !important;
-        font-weight: 500;
-        padding: 6px 12px;
-        border-radius: 6px;
-        text-decoration: none !important;
-        border: 1px solid #cbd5e1;
+        padding: 12px 14px;
+        margin: 10px 0;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -70,12 +67,12 @@ with st.sidebar:
     st.markdown("**Carrera:** Ing. Industrial - UMSA (Plan 2015)")
     st.markdown("---")
     
-    st.markdown("### 🎯 Enfoque Actual")
-    st.info("Re-aprendizaje activo + Ingesta inteligente de recursos + Análisis con IA.")
+    st.markdown("### 🎯 Inteligencia Integrada")
+    st.info("Detección de duplicados + Índice de Empleabilidad con datos objetivos de mercado.")
     
     st.markdown("---")
     st.markdown("### ⚡ Acceso Rápido")
-    st.caption("269 recursos analizados y enriquecidos con IA.")
+    st.caption("269 recursos evaluados con métricas de reclutamiento.")
 
 # Top KPIs
 conn = get_db()
@@ -84,82 +81,116 @@ cur = conn.cursor()
 cur.execute("SELECT COUNT(*) FROM resources")
 total_resources = cur.fetchone()[0]
 
-cur.execute("SELECT COUNT(*) FROM resources WHERE direct_url IS NOT NULL AND direct_url != post_url AND direct_url != ''")
-direct_links_count = cur.fetchone()[0]
+cur.execute("SELECT COUNT(*) FROM resources WHERE is_duplicate = 1")
+total_duplicates = cur.fetchone()[0]
 
-cur.execute("SELECT COUNT(*) FROM academic_courses WHERE status='Aprobada'")
-courses_approved = cur.fetchone()[0]
+cur.execute("SELECT COUNT(*) FROM resources WHERE employability_score >= 80")
+high_employability_count = cur.fetchone()[0]
 
-cur.execute("SELECT COUNT(*) FROM academic_courses")
-total_courses = cur.fetchone()[0]
+cur.execute("SELECT COUNT(*) FROM resources WHERE has_cert LIKE 'Sí%'")
+cert_count = cur.fetchone()[0]
 
 col1, col2, col3, col4 = st.columns(4)
 with col1:
-    st.metric("💡 Recursos en Segundo Cerebro", f"{total_resources}", "Analizados con IA")
+    st.metric("💡 Recursos Totales", f"{total_resources}", "En Segundo Cerebro")
 with col2:
-    st.metric("🚀 Enlaces Directos a Recursos", f"{direct_links_count}", "Sitios web / GitHub / Drives")
+    st.metric("⚠️ Publicaciones Repetidas", f"{total_duplicates}", "Mismo recurso en varios posts")
 with col3:
-    st.metric("🎓 Materias Aprobadas UMSA", f"{courses_approved} / {total_courses}", f"{int((courses_approved/total_courses)*100)}% avance")
+    st.metric("💼 Alta Empleabilidad (>80%)", f"{high_employability_count}", "Impacto directo en CV y salario")
 with col4:
-    st.metric("🤖 Agentes Activos", "5 Agentes", "Segundo Cerebro, UMSA, Finanzas, Hábitos")
+    st.metric("📜 Con Certificación Oficial", f"{cert_count}", "Acreditadas por BigTech / Universidades")
 
 st.markdown("---")
 
 # Main Tabs
 tab1, tab2, tab3, tab4 = st.tabs([
-    "💡 Segundo Cerebro (Biblioteca de Recursos)",
+    "💡 Segundo Cerebro (Biblioteca Inteligente)",
     "🎓 Malla UMSA & Informática MIT",
     "📊 Hábitos & Energía Diaria",
     "💰 Finanzas (InvernovAH)"
 ])
 
 # ------------------------------------------------------------
-# TAB 1: SEGUNDO CEREBRO (ENRIQUECIDO)
+# TAB 1: SEGUNDO CEREBRO (CON DEDUPLICACIÓN Y EMPLEABILIDAD)
 # ------------------------------------------------------------
 with tab1:
-    st.subheader("💡 Tu Biblioteca Inteligente de Recursos & Enlaces")
-    st.markdown("Cada recurso incluye su **síntesis de valor generada por IA**, su **enlace directo al recurso real** (GitHub, Drive, sitio web) y el enlace original.")
+    st.subheader("💡 Tu Biblioteca Inteligente con Detección de Duplicados & Métricas de Empleabilidad")
+    st.markdown("Ahora cada recurso te avisa **si ya lo habías visto en otra publicación**, calcula su **índice de empleabilidad real** e indica el **peso que tiene para los reclutadores**.")
     
-    col_search, col_cat, col_filter_direct = st.columns([2, 1, 1])
+    col_search, col_cat, col_order = st.columns([2, 1, 1])
     
     cur.execute("SELECT DISTINCT category FROM resources WHERE category IS NOT NULL AND category != ''")
     categories = [r[0] for r in cur.fetchall()]
     
     with col_search:
-        search_query = st.text_input("🔍 Buscar por palabra clave (Claude, NASA, NVIDIA, Python, Beca, Prompt, etc.):", "")
+        search_query = st.text_input("🔍 Buscar por palabra clave (Claude, CS50, NASA, NVIDIA, Python, etc.):", "")
     with col_cat:
         cat_filter = st.selectbox("Categoría:", ["Todas"] + categories)
-    with col_filter_direct:
-        only_direct = st.checkbox("🚀 Solo con enlace directo al recurso real", value=False)
+    with col_order:
+        sort_by = st.selectbox("Ordenar por:", ["Mayor Empleabilidad", "Más Recientes", "Solo con Certificación"])
         
-    # Query resources
+    col_f1, col_f2, col_f3 = st.columns(3)
+    with col_f1:
+        filter_high_emp = st.checkbox("🔥 Solo Alta Empleabilidad (>=80%)", value=False)
+    with col_f2:
+        filter_has_cert = st.checkbox("📜 Solo con Certificación Oficial", value=False)
+    with col_f3:
+        filter_unique_only = st.checkbox("✨ Ocultar repeticiones (Solo recursos únicos)", value=False)
+        
+    # Build Query
     query = """
-    SELECT id, title, category, source, author, date_added, url, post_url, direct_url, summary, ai_summary, status 
+    SELECT id, title, category, source, author, date_added, url, post_url, direct_url, summary, 
+           ai_summary, has_cert, recruiter_weight, employability_score, employability_rationale,
+           is_duplicate, duplicate_count, canonical_url, status
     FROM resources 
     WHERE 1=1
     """
     params = []
     
     if search_query:
-        query += " AND (title LIKE ? OR summary LIKE ? OR ai_summary LIKE ? OR url LIKE ? OR direct_url LIKE ?)"
-        params.extend([f"%{search_query}%", f"%{search_query}%", f"%{search_query}%", f"%{search_query}%", f"%{search_query}%"])
+        query += " AND (title LIKE ? OR summary LIKE ? OR ai_summary LIKE ? OR url LIKE ? OR direct_url LIKE ? OR employability_rationale LIKE ?)"
+        params.extend([f"%{search_query}%", f"%{search_query}%", f"%{search_query}%", f"%{search_query}%", f"%{search_query}%", f"%{search_query}%"])
     if cat_filter != "Todas":
         query += " AND category = ?"
         params.append(cat_filter)
-    if only_direct:
-        query += " AND direct_url IS NOT NULL AND direct_url != post_url AND direct_url != ''"
+    if filter_high_emp:
+        query += " AND employability_score >= 80"
+    if filter_has_cert:
+        query += " AND has_cert LIKE 'Sí%'"
+    if filter_unique_only:
+        query += " GROUP BY canonical_url"
         
-    query += " ORDER BY date_added DESC LIMIT 60"
+    if sort_by == "Mayor Empleabilidad":
+        query += " ORDER BY employability_score DESC, date_added DESC"
+    elif sort_by == "Solo con Certificación":
+        query += " ORDER BY CASE WHEN has_cert LIKE 'Sí%' THEN 1 ELSE 2 END, employability_score DESC"
+    else:
+        query += " ORDER BY date_added DESC"
+        
+    query += " LIMIT 60"
     
     df_res = pd.read_sql_query(query, conn, params=params)
     st.write(f"Mostrando **{len(df_res)}** recursos encontrados:")
     
-    # Display cards
     for idx, row in df_res.iterrows():
         has_direct = row['direct_url'] and row['direct_url'] != row['post_url']
+        is_dup = row['is_duplicate'] == 1 and row['duplicate_count'] > 1
         
-        with st.expander(f"{row['category']} | {row['title']}"):
-            # 1. AI Value Summary Box
+        # Expander title with score badge
+        score = row['employability_score'] or 50
+        score_emoji = "🟢" if score >= 85 else ("🟡" if score >= 70 else "⚪")
+        card_header = f"{score_emoji} [{score}% Empleabilidad] {row['category']} | {row['title']}"
+        
+        with st.expander(card_header):
+            # 1. Duplicate Warning Banner
+            if is_dup:
+                st.markdown(f"""
+                <div class="dup-badge">
+                    ⚠️ RECURSO REPETIDO: Este mismo recurso ya apareció en {row['duplicate_count']} publicaciones que guardaste.
+                </div>
+                """, unsafe_allow_html=True)
+                
+            # 2. AI Value Box
             if row['ai_summary']:
                 st.markdown(f"""
                 <div class="ai-box">
@@ -167,7 +198,21 @@ with tab1:
                 </div>
                 """, unsafe_allow_html=True)
                 
-            # 2. Action Buttons / Direct URLs
+            # 3. Objective Market & Employability Analysis Block
+            st.markdown(f"""
+            <div class="market-box">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <div><strong>📈 Índice de Empleabilidad:</strong> <code>{score}%</code></div>
+                    <div><strong>📜 Certificación:</strong> <code>{row['has_cert']}</code></div>
+                    <div><strong>🎯 Peso Reclutador:</strong> <code>{row['recruiter_weight']}</code></div>
+                </div>
+                <div style="font-size: 13px; color: #334155; margin-top: 6px;">
+                    <strong>💡 Fundamento de Mercado:</strong> {row['employability_rationale']}
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # 4. Action Buttons / Direct URLs
             st.markdown("#### 🔗 Enlaces de Acceso:")
             col_b1, col_b2 = st.columns([1, 1])
             with col_b1:
@@ -183,7 +228,7 @@ with tab1:
             st.markdown("---")
             st.markdown(f"**👤 Publicado por:** `{row['author'] or row['source']}` | **📅 Fecha:** {row['date_added']} | **Estado:** `{row['status']}`")
             
-            # 3. Original Caption in Collapsible Expander
+            # 5. Original Caption Collapsible
             with st.expander("📝 Ver descripción original del creador"):
                 st.text(row['summary'] if row['summary'] else "Sin descripción adicional.")
                 
@@ -199,8 +244,8 @@ with tab1:
         if submit_res and f_url:
             now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
             cur.execute("""
-            INSERT INTO resources (url, direct_url, post_url, title, summary, ai_summary, category, date_added, source, author, status)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'Entrada Manual', 'Mark Hazard', 'Pendiente')
+            INSERT INTO resources (url, direct_url, post_url, title, summary, ai_summary, category, date_added, source, author, status, has_cert, recruiter_weight, employability_score, employability_rationale)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'Entrada Manual', 'Mark Hazard', 'Pendiente', 'No (Manual)', '🟡 Medio', 75, 'Añadido manualmente por el usuario.')
             """, (f_url, f_url, f_url, f_title or f_url, f_summary, f"💡 **Nota de Mark:** {f_summary}", f_cat, now_str))
             conn.commit()
             st.success("¡Recurso añadido exitosamente a tu Segundo Cerebro!")
