@@ -2,7 +2,22 @@ import sys
 import os
 
 # Ensure repository root is always in sys.path regardless of execution environment
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+def get_project_root():
+    if "NEXUS_ROOT" in os.environ and os.path.exists(os.environ["NEXUS_ROOT"]):
+        return os.path.abspath(os.environ["NEXUS_ROOT"])
+    cur = os.path.dirname(os.path.abspath(__file__)) if "__file__" in globals() else os.getcwd()
+    for _ in range(5):
+        if os.path.exists(os.path.join(cur, "requirements.txt")) and (
+            os.path.exists(os.path.join(cur, "src")) or os.path.exists(os.path.join(cur, "data"))
+        ):
+            return cur
+        parent = os.path.dirname(cur)
+        if parent == cur:
+            break
+        cur = parent
+    return cur
+
+ROOT_DIR = get_project_root()
 if ROOT_DIR not in sys.path:
     sys.path.insert(0, ROOT_DIR)
 
@@ -26,13 +41,14 @@ st.set_page_config(
 DB_PATH = os.path.join(ROOT_DIR, "data", "nexus.db")
 
 def get_db():
+    os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
     if not os.path.exists(DB_PATH):
         try:
             from src.database.db_manager import init_db
             init_db()
-        except Exception:
-            pass
-    conn = sqlite3.connect(DB_PATH)
+        except Exception as e:
+            print(f"Warning: init_db encountered: {e}")
+    conn = sqlite3.connect(DB_PATH, check_same_thread=False)
     conn.row_factory = sqlite3.Row
     return conn
 

@@ -2,12 +2,28 @@ import sqlite3
 import os
 import json
 
-DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "data", "nexus.db")
-JSON_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "data", "instagram_resources.json")
+def get_project_root():
+    if "NEXUS_ROOT" in os.environ and os.path.exists(os.environ["NEXUS_ROOT"]):
+        return os.path.abspath(os.environ["NEXUS_ROOT"])
+    cur = os.path.dirname(os.path.abspath(__file__)) if "__file__" in globals() else os.getcwd()
+    for _ in range(5):
+        if os.path.exists(os.path.join(cur, "requirements.txt")) and (
+            os.path.exists(os.path.join(cur, "src")) or os.path.exists(os.path.join(cur, "data"))
+        ):
+            return cur
+        parent = os.path.dirname(cur)
+        if parent == cur:
+            break
+        cur = parent
+    return cur
+
+ROOT_DIR = get_project_root()
+DB_PATH = os.path.join(ROOT_DIR, "data", "nexus.db")
+JSON_PATH = os.path.join(ROOT_DIR, "data", "instagram_resources.json")
 
 def get_connection():
     os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, check_same_thread=False)
     conn.row_factory = sqlite3.Row
     return conn
 
