@@ -1,9 +1,16 @@
+import sys
+import os
+
+# Ensure repository root is always in sys.path regardless of execution environment
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+if ROOT_DIR not in sys.path:
+    sys.path.insert(0, ROOT_DIR)
+
 import streamlit as st
 import sqlite3
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-import os
 import re
 from datetime import datetime
 
@@ -15,11 +22,16 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Database path
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-DB_PATH = os.path.join(BASE_DIR, "data", "nexus.db")
+# Database path with automatic self-healing initialization
+DB_PATH = os.path.join(ROOT_DIR, "data", "nexus.db")
 
 def get_db():
+    if not os.path.exists(DB_PATH):
+        try:
+            from src.database.db_manager import init_db
+            init_db()
+        except Exception:
+            pass
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
