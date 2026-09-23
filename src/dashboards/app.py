@@ -828,6 +828,47 @@ with tab_fire:
         
     st.markdown("---")
     
+    # 🎯 META CRÍTICA DE CHOQUE: 1,000 USDT (30 de Noviembre)
+    deadline = date(2026, 11, 30)
+    today_dt = date.today()
+    days_left = max(1, (deadline - today_dt).days)
+    target_debt = 1000.0
+    daily_target_usd = target_debt / days_left
+    daily_target_bs = daily_target_usd * 6.96 # Tasa oficial/referencial
+
+    st.markdown(f"""
+    <div style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 1.5px solid #3b82f6; border-radius: 10px; padding: 16px; margin: 12px 0 20px 0;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <span style="background: #1d4ed8; color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700;">🎯 META CRÍTICA DE CORTO PLAZO</span>
+                <h3 style="color: #1e3a8a; margin: 6px 0 2px 0;">Liquidar Deuda de 1,000 USDT (Meta: 30 de Noviembre de 2026)</h3>
+                <p style="color: #475569; font-size: 13.5px; margin: 0;">Estrategia de Choque: Automatizaciones n8n/Python + Dashboards en Streamlit + Conversión a Binance USDT.</p>
+            </div>
+            <div style="text-align: right;">
+                <h2 style="color: #1e40af; margin: 0;">{days_left} Días</h2>
+                <span style="font-size: 12px; color: #64748b;">restantes para la meta</span>
+            </div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px;">
+            <div style="background: white; border-radius: 6px; padding: 10px; border: 1px solid #bfdbfe;">
+                <span style="font-size: 11.5px; color: #64748b;">Ritmo Diario Necesario:</span>
+                <h4 style="color: #0f172a; margin: 2px 0;">${daily_target_usd:.2f} USDT/día</h4>
+                <span style="font-size: 11px; color: #2563eb;">~{daily_target_bs:.0f} Bs/día</span>
+            </div>
+            <div style="background: white; border-radius: 6px; padding: 10px; border: 1px solid #bfdbfe;">
+                <span style="font-size: 11.5px; color: #64748b;">Vía 1: Clientes Automatización:</span>
+                <h4 style="color: #16a34a; margin: 2px 0;">$600 USDT</h4>
+                <span style="font-size: 11px; color: #166534;">2 proyectos n8n/Python @ $300</span>
+            </div>
+            <div style="background: white; border-radius: 6px; padding: 10px; border: 1px solid #bfdbfe;">
+                <span style="font-size: 11.5px; color: #64748b;">Vía 2: Dashboards + Ahorro Diario:</span>
+                <h4 style="color: #9333ea; margin: 2px 0;">$400 USDT</h4>
+                <span style="font-size: 11px; color: #7e22ce;">1 Dashboard Streamlit + remanente 60 Bs</span>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
     # Simulador de Interés Compuesto Pasivo (S&P 500 / MSCI World)
     st.markdown("### 📈 Simulador de Libertad Financiera e Inversión Pasiva Indexada")
     st.caption("Proyección matemática basada en el rendimiento histórico promedio del 8% anual (S&P 500 / Globales vía IBKR):")

@@ -47,23 +47,114 @@ class DynamicScheduler:
         conn.close()
 
     def _seed_default_schedule(self, cur, base_date: str):
-        """Genera el horario base balanceado según la filosofía de InvernovAH y la malla de 3er semestre UMSA."""
-        default_blocks = [
-            ("07:00", "08:00", "🌅 Rutina Matutina: Luz solar, hidratación y Pre-vuelo NASA", "FIXED", 1),
-            ("08:00", "10:00", "💻 Deep Work Bloque 1: Programación Python / Algoritmos CS50", "FLEXIBLE", 1),
-            ("10:00", "12:00", "🎓 Clases UMSA: IND-312 Informática para Ingeniería", "FIXED", 1),
-            ("12:00", "13:00", "🥗 Almuerzo & Descanso Cognitivo", "FIXED", 1),
-            ("13:00", "14:30", "🎓 Clases UMSA: IND-311 Cálculo de Probabilidades", "FIXED", 1),
-            ("14:30", "15:30", "🛡️ Bloque de Holgura / Buffer de Contingencia", "BUFFER", 3),
-            ("15:30", "17:00", "💻 Deep Work Bloque 2: Proyecto NEXUS / Automatización n8n", "FLEXIBLE", 2),
-            ("17:00", "18:00", "🏋️ Entrenamiento de Fuerza & Salud", "FLEXIBLE", 2),
-            ("18:00", "19:30", "📚 Estudio Cuantitativo UMSA (Ejercicios Probabilidad/Física)", "FLEXIBLE", 2),
-            ("19:30", "20:30", "🛡️ Bloque de Holgura Vespertino / Buffer", "BUFFER", 3),
-            ("20:30", "21:30", "🗣️ Práctica de Inglés Técnico C1 & Lectura", "FLEXIBLE", 2),
-            ("21:30", "22:30", "🌙 Cena, Desconexión Digital & Cierre del Día", "FIXED", 1),
-            ("22:30", "07:00", "😴 Sueño Biológico Protegido (Higiene de Sueño)", "FIXED", 1)
-        ]
-        for start, end, title, b_type, prio in default_blocks:
+        """Genera el horario base real según el día de la semana para Mark Eduardo Terrazas Luna."""
+        try:
+            day_of_week = datetime.strptime(base_date, "%Y-%m-%d").weekday() # 0: Lunes, ..., 6: Domingo
+        except Exception:
+            day_of_week = 0
+
+        # Lunes (0)
+        if day_of_week == 0:
+            blocks = [
+                ("05:15", "06:30", "🌅 Rutina Matutina & Alistamiento (75 min)", "FIXED", 1),
+                ("06:30", "07:00", "🚌 Traslado a UMSA (30 min)", "FIXED", 1),
+                ("07:00", "09:00", "🎓 UMSA: Taller 1", "FIXED", 1),
+                ("09:00", "11:00", "🎓 UMSA: Seguridad Industrial (Auxiliatura)", "FIXED", 1),
+                ("11:00", "12:30", "🥗 Almuerzo & Buffer de Descanso", "BUFFER", 3),
+                ("12:30", "15:30", "🔬 GCI World (Matsuo Lab Tokyo Univ): Data Science & Python", "FLEXIBLE", 1),
+                ("15:30", "17:30", "💻 Deep Work UMSA: Tareas y Estudio Técnico", "FLEXIBLE", 2),
+                ("17:30", "19:00", "🛡️ Buffer / Traslado a Diseño Industrial", "BUFFER", 3),
+                ("19:00", "21:00", "🎓 UMSA: Diseño Industrial", "FIXED", 1),
+                ("21:00", "21:30", "🚌 Retorno a casa", "FIXED", 1),
+                ("21:30", "22:30", "🌙 Cena, Desconexión Digital & Cierre NASA", "FIXED", 1),
+                ("22:30", "05:15", "😴 Sueño Biológico Protegido (Higiene de Sueño)", "FIXED", 1)
+            ]
+        # Martes (1)
+        elif day_of_week == 1:
+            blocks = [
+                ("05:15", "06:30", "🌅 Rutina Matutina & Alistamiento (75 min)", "FIXED", 1),
+                ("06:30", "07:00", "🚌 Traslado a UMSA (30 min)", "FIXED", 1),
+                ("07:00", "08:00", "🎓 UMSA: Taller 1", "FIXED", 1),
+                ("08:00", "11:00", "🎓 UMSA: Clases [⚠️ Choque Taller 1 / Seg. Ind. / Gerencia]", "FIXED", 1),
+                ("11:00", "12:30", "🥗 Almuerzo & Buffer", "BUFFER", 3),
+                ("12:30", "15:30", "🔬 GCI World (Matsuo Lab): Laboratorios de Machine Learning", "FLEXIBLE", 1),
+                ("15:30", "17:30", "💰 Proyecto Monetización ($1,000 USDT Meta Noviembre)", "FLEXIBLE", 1),
+                ("17:30", "18:30", "🏋️ Entrenamiento Físico & Fuerza", "FLEXIBLE", 2),
+                ("18:30", "20:00", "📚 Refuerzo Académico & Estudio UMSA", "FLEXIBLE", 2),
+                ("20:00", "21:30", "🛡️ Bloque Buffer Vespertino", "BUFFER", 3),
+                ("21:30", "22:30", "🌙 Cena & Cierre del Día", "FIXED", 1),
+                ("22:30", "05:15", "😴 Sueño Biológico Protegido", "FIXED", 1)
+            ]
+        # Miércoles (2)
+        elif day_of_week == 2:
+            blocks = [
+                ("07:15", "08:30", "🌅 Rutina Matutina & Alistamiento (75 min)", "FIXED", 1),
+                ("08:30", "09:00", "🚌 Traslado a UMSA (30 min)", "FIXED", 1),
+                ("09:00", "12:00", "🎓 UMSA: Seguridad Industrial (Laboratorio)", "FIXED", 1),
+                ("12:00", "13:00", "🥗 Almuerzo & Descanso Cognitivo", "FIXED", 1),
+                ("13:00", "15:00", "🎓 UMSA: Seguridad Industrial (Clase Teórica)", "FIXED", 1),
+                ("15:00", "15:30", "🚌 Retorno a casa", "FIXED", 1),
+                ("15:30", "18:30", "🔬 GCI World (Matsuo Lab): Tareas y Prácticas Python/Pandas", "FLEXIBLE", 1),
+                ("18:30", "20:00", "💰 Prospección Remota & Monetización ($1,000 USDT)", "FLEXIBLE", 1),
+                ("20:00", "21:30", "🛡️ Buffer de Contingencia & Lectura", "BUFFER", 3),
+                ("21:30", "22:30", "🌙 Cena & Cierre del Día", "FIXED", 1),
+                ("22:30", "05:45", "😴 Sueño Biológico Protegido", "FIXED", 1)
+            ]
+        # Jueves (3)
+        elif day_of_week == 3:
+            blocks = [
+                ("05:45", "07:00", "🌅 Rutina Matutina & Alistamiento (75 min)", "FIXED", 1),
+                ("07:00", "08:00", "🚌 Traslado a Empresa (60 min) [🎧 Podcasts Técnicos / Inglés]", "FIXED", 2),
+                ("08:00", "12:00", "🏢 Empresa: Pasantía & Prácticas Profesionales", "FIXED", 1),
+                ("12:00", "13:00", "🚌 Retorno de Empresa (60 min) [🎧 Podcasts Técnicos / Inglés]", "FIXED", 2),
+                ("13:00", "14:00", "🥗 Almuerzo & Descanso", "FIXED", 1),
+                ("14:00", "17:00", "🔬 GCI World (Matsuo Lab): Análisis de Datos & Algoritmos", "FLEXIBLE", 1),
+                ("17:00", "18:30", "🛡️ Buffer / Traslado a Diseño Industrial", "BUFFER", 3),
+                ("19:00", "21:00", "🎓 UMSA: Diseño Industrial", "FIXED", 1),
+                ("21:00", "21:30", "🚌 Retorno a casa", "FIXED", 1),
+                ("21:30", "22:30", "🌙 Cena & Cierre NASA", "FIXED", 1),
+                ("22:30", "07:00", "😴 Sueño Biológico Protegido", "FIXED", 1)
+            ]
+        # Viernes (4)
+        elif day_of_week == 4:
+            blocks = [
+                ("08:30", "09:45", "🌅 Rutina Matutina & Alistamiento (75 min)", "FIXED", 1),
+                ("09:45", "10:30", "🚌 Traslado a UMSA / Buffer", "FIXED", 1),
+                ("11:00", "13:00", "🎓 UMSA: Gerencia", "FIXED", 1),
+                ("13:00", "14:00", "🥗 Almuerzo & Descanso", "FIXED", 1),
+                ("14:00", "17:00", "🔬 GCI World: Cierre Semanal de Entregables Tokyo", "FLEXIBLE", 1),
+                ("17:00", "18:00", "🏋️ Entrenamiento Físico & Salud", "FLEXIBLE", 2),
+                ("18:00", "20:00", "💰 Proyectos de Automatización con IA / n8n ($1,000 USDT)", "FLEXIBLE", 1),
+                ("20:00", "21:30", "🛡️ Buffer Libre de Viernes", "BUFFER", 3),
+                ("21:30", "22:30", "🌙 Cena & Cierre del Día", "FIXED", 1),
+                ("22:30", "08:00", "😴 Sueño Biológico Protegido", "FIXED", 1)
+            ]
+        # Sábado (5)
+        elif day_of_week == 5:
+            blocks = [
+                ("08:00", "09:00", "🌅 Rutina Matutina & Desayuno", "FIXED", 1),
+                ("09:00", "12:30", "🔬 Bloque Maestro GCI World: Kaggle / Modelado Avanzado", "FLEXIBLE", 1),
+                ("12:30", "14:00", "🥗 Almuerzo & Descanso", "FIXED", 1),
+                ("14:00", "17:00", "💰 Deep Work Freelance / Upwork ($1,000 USDT Meta Noviembre)", "FLEXIBLE", 1),
+                ("17:00", "18:30", "📚 Refuerzo Académico UMSA & Buffer", "BUFFER", 3),
+                ("19:00", "22:00", "🇬🇧 Curso Virtual de Inglés (En Vivo - 3 Horas)", "FIXED", 1),
+                ("22:00", "22:45", "🌙 Cena Ligera & Cierre", "FIXED", 1),
+                ("22:45", "08:30", "😴 Sueño Biológico Protegido", "FIXED", 1)
+            ]
+        # Domingo (6)
+        else:
+            blocks = [
+                ("08:30", "09:30", "🌅 Rutina Matutina & Desayuno", "FIXED", 1),
+                ("09:30", "12:00", "📊 Retrospectiva Semanal InvernovAH (Finanzas Binance & OKRs)", "FLEXIBLE", 1),
+                ("12:00", "15:00", "🥗 Almuerzo Familiar & Desconexión", "FIXED", 1),
+                ("15:00", "18:00", "🔬 Práctica Libre GCI World / Proyectos Personales", "FLEXIBLE", 2),
+                ("18:00", "19:00", "🛡️ Buffer de Preparación para Clase", "BUFFER", 3),
+                ("19:00", "22:00", "🇬🇧 Curso Virtual de Inglés (En Vivo - 3 Horas)", "FIXED", 1),
+                ("22:00", "22:45", "🌙 Cierre Semanal & Planificación de Lunes", "FIXED", 1),
+                ("22:45", "05:15", "😴 Sueño Biológico Protegido", "FIXED", 1)
+            ]
+
+        for start, end, title, b_type, prio in blocks:
             cur.execute("""
             INSERT INTO dynamic_schedule (date, start_time, end_time, title, block_type, priority, status)
             VALUES (?, ?, ?, ?, ?, ?, 'Programado')
