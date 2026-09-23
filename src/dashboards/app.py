@@ -491,10 +491,11 @@ with tab_nasa:
         "*'No se inicia el día sin una lista de pre-vuelo clara y medible'*. Divide tu vida en 3 niveles de abstracción:"
     )
     
-    subtab_h1, subtab_h2, subtab_h3 = st.tabs([
+    subtab_h1, subtab_h2, subtab_h3, subtab_h4 = st.tabs([
         "📄 Hoja 1: Macro-Visión & OKRs",
         "📊 Hoja 2: Hábitos & Energía Diaria",
-        "📋 Hoja 3: Checklist Pre-Vuelo Diario NASA"
+        "📋 Hoja 3: Checklist Pre-Vuelo Diario NASA",
+        "📅 Hoja 4: Itinerario Dinámico & Re-planificador con Menor Fricción"
     ])
     
     # ------------------ HOJA 1: MACRO-VISIÓN ------------------
@@ -638,6 +639,91 @@ with tab_nasa:
                         st.rerun()
         else:
             st.info("No tienes tareas pre-vuelo registradas para hoy. Define tus 3 prioridades no negociables en el formulario superior.")
+
+    # ------------------ HOJA 4: ITINERARIO DINÁMICO & TELEGRAM ------------------
+    with subtab_h4:
+        st.markdown("#### 📅 Hoja 4: Itinerario Dinámico & Re-planificador con Menor Fricción")
+        st.markdown(
+            "Este motor calcula tu agenda en tiempo real usando principios de **Investigación de Operaciones** (Timeblocking elástico y amortiguadores de tiempo). "
+            "Cuando te surge un imprevisto en la universidad, en el trabajo o en tu vida personal, el sistema **recalcula automáticamente el itinerario**, "
+            "reacomoda las tareas desplazadas en tus buffers o días posteriores y protege tus bloques no negociables."
+        )
+
+        from src.engine.scheduler import DynamicScheduler
+        from src.integrations.telegram_bot import TelegramNEXUSAssistant
+
+        scheduler = DynamicScheduler(DB_PATH)
+        assistant = TelegramNEXUSAssistant(DB_PATH, gemini_key)
+
+        # Simulador de Mensaje de Telegram / Entrada por Voz
+        with st.expander("📲 **Simulador de Asistente de Telegram (Voz o Texto Libre)**", expanded=True):
+            st.caption("Escribe o dicta cualquier imprevisto o consulta como si se lo enviaras a tu bot de Telegram:")
+            col_tg1, col_tg2 = st.columns([3, 1])
+            with col_tg1:
+                tg_input = st.text_input("Mensaje de Telegram / Nota de voz simulada:", 
+                                         placeholder="Ej: 'Surgió un imprevisto: reunión en la UMSA de 2 horas a las 15:30' o '¿Cuál es mi plan de hoy?'")
+            with col_tg2:
+                st.markdown("<br>", unsafe_allow_html=True)
+                send_tg = st.button("🚀 Enviar a Telegram / Recalcular", type="primary", use_container_width=True)
+
+            if send_tg and tg_input.strip():
+                with st.spinner("🤖 Procesando mensaje con el Asistente NEXUS..."):
+                    reply = assistant.process_message(tg_input.strip())
+                    st.markdown(reply)
+                    st.success("¡Itinerario actualizado y sincronizado en la base de datos!")
+                    st.rerun()
+
+        # Selector de Fecha para ver el Itinerario
+        col_sch_d, col_sch_btn = st.columns([2, 1])
+        with col_sch_d:
+            sch_date = st.date_input("Ver itinerario para la fecha:", date.today(), key="sch_date_picker")
+        with col_sch_btn:
+            st.markdown("<br>", unsafe_allow_html=True)
+            if st.button("🔄 Regenerar / Resetear Horario Base de Hoy"):
+                cur.execute("DELETE FROM dynamic_schedule WHERE date = ?", (str(sch_date),))
+                scheduler._seed_default_schedule(cur, str(sch_date))
+                conn.commit()
+                st.success("Horario base restablecido.")
+                st.rerun()
+
+        # Visualizador del Itinerario Dinámico
+        items = scheduler.get_schedule(str(sch_date))
+        if items:
+            now_dt = datetime.now()
+            now_min = now_dt.hour * 60 + now_dt.minute if str(sch_date) == str(date.today()) else -1
+
+            st.markdown(f"**Bloques Programados para {sch_date}:**")
+            for it in items:
+                s_min = scheduler._time_to_minutes(it['start_time'])
+                e_min = scheduler._time_to_minutes(it['end_time'])
+                is_current = (s_min <= now_min < e_min) if now_min >= 0 else False
+
+                b_type = it.get('block_type', 'FLEXIBLE')
+                color_map = {
+                    "FIXED": ("#dbeafe", "#1e40af", "🔒 Fijo (UMSA/Sueño)"),
+                    "FLEXIBLE": ("#dcfce7", "#166534", "⚡ Flexible (Deep Work/Estudio)"),
+                    "BUFFER": ("#fef3c7", "#92400e", "🛡️ Holgura / Buffer"),
+                    "IMPREVISTO": ("#fee2e2", "#991b1b", "🚨 Imprevisto Activo")
+                }
+                bg, fg, label = color_map.get(b_type, ("#f1f5f9", "#334155", b_type))
+
+                now_badge = '<span style="background:#ef4444; color:white; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:700; margin-right:8px;">[EN ESTE MOMENTO]</span>' if is_current else ''
+
+                st.markdown(f"""
+                <div style="background:{'#f0fdf4' if is_current else '#ffffff'}; border:1px solid {'#10b981' if is_current else '#e2e8f0'}; border-left:5px solid {fg}; border-radius:8px; padding:10px 14px; margin-bottom:8px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            {now_badge}
+                            <span style="font-family:monospace; font-weight:700; color:#334155; font-size:13.5px;">{it['start_time']} - {it['end_time']}</span>
+                            <span style="font-weight:600; color:#0f172a; margin-left:12px; font-size:14px;">{it['title']}</span>
+                        </div>
+                        <span style="background:{bg}; color:{fg}; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:600;">{label}</span>
+                    </div>
+                    {f'<p style="font-size:12px; color:#64748b; margin:4px 0 0 0;"><i>{it["notes"]}</i></p>' if it.get("notes") else ''}
+                </div>
+                """, unsafe_allow_html=True)
+        else:
+            st.info("No hay bloques programados para este día.")
 
 # ============================================================
 # TAB 3: MATRIZ FLOR DE LOTO (LOTUS BLOSSOM 8x8 - MATSUMURA)
