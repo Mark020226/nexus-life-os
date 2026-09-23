@@ -1,0 +1,2169 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//NEXUS Life OS//InvernovAH Engineering//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:NEXUS Life OS - Mark E. Terrazas
+X-WR-TIMEZONE:America/La_Paz
+X-WR-CALDESC:Itinerario Dinámico Adaptativo (UMSA + GCI World Tokyo + Empresa + Inglés + Monetización $1,000 USDT)
+BEGIN:VEVENT
+UID:nexus-2026-09-23-0-715@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260923T071500
+DTEND:20260923T083000
+SUMMARY:🌅 Rutina Matutina & Alistamiento (75 min)
+DESCRIPTION:Bloque: 🌅 Rutina Matutina & Alistamiento (75 min)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌅 Rutina Matutina & Alistamiento (75 min)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-23-1-830@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260923T083000
+DTEND:20260923T090000
+SUMMARY:🚌 Traslado a UMSA (30 min)
+DESCRIPTION:Bloque: 🚌 Traslado a UMSA (30 min)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🚌 Traslado a UMSA (30 min)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-23-2-90@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260923T090000
+DTEND:20260923T120000
+SUMMARY:🎓 UMSA: Seguridad Industrial (Laboratorio)
+DESCRIPTION:Bloque: 🎓 UMSA: Seguridad Industrial (Laboratorio)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🎓 UMSA: Seguridad Industrial (Laboratorio)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-23-3-120@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260923T120000
+DTEND:20260923T130000
+SUMMARY:🥗 Almuerzo & Descanso Cognitivo
+DESCRIPTION:Bloque: 🥗 Almuerzo & Descanso Cognitivo\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🥗 Almuerzo & Descanso Cognitivo
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-23-4-130@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260923T130000
+DTEND:20260923T150000
+SUMMARY:🎓 UMSA: Seguridad Industrial (Clase Teórica)
+DESCRIPTION:Bloque: 🎓 UMSA: Seguridad Industrial (Clase Teórica)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🎓 UMSA: Seguridad Industrial (Clase Teórica)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-23-5-150@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260923T150000
+DTEND:20260923T153000
+SUMMARY:🚌 Retorno a casa
+DESCRIPTION:Bloque: 🚌 Retorno a casa\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🚌 Retorno a casa
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-23-6-1530@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260923T153000
+DTEND:20260923T183000
+SUMMARY:🔬 GCI World (Matsuo Lab): Tareas y Prácticas Python/Pandas
+DESCRIPTION:Bloque: 🔬 GCI World (Matsuo Lab): Tareas y Prácticas Python/Pandas\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🔬 GCI World (Matsuo Lab): Tareas y Prácticas Python/Pandas
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-23-7-1830@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260923T183000
+DTEND:20260923T200000
+SUMMARY:💰 Prospección Remota & Monetización ($1\,000 USDT)
+DESCRIPTION:Bloque: 💰 Prospección Remota & Monetización ($1,000 USDT)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 💰 Prospección Remota & Monetización ($1\,000 USDT)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-23-8-200@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260923T200000
+DTEND:20260923T213000
+SUMMARY:🛡️ Buffer de Contingencia & Lectura
+DESCRIPTION:Bloque: 🛡️ Buffer de Contingencia & Lectura\nPrioridad: 🌱 BAJA / BUFFER (Ajustable ante imprevistos)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🛡️ Buffer de Contingencia & Lectura
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-23-9-2130@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260923T213000
+DTEND:20260923T223000
+SUMMARY:🌙 Cena & Cierre del Día
+DESCRIPTION:Bloque: 🌙 Cena & Cierre del Día\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌙 Cena & Cierre del Día
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-23-10-2230@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260923T223000
+DTEND:20260923T054500
+SUMMARY:😴 Sueño Biológico Protegido
+DESCRIPTION:Bloque: 😴 Sueño Biológico Protegido\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 😴 Sueño Biológico Protegido
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-24-0-545@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260924T054500
+DTEND:20260924T070000
+SUMMARY:🌅 Rutina Matutina & Alistamiento (75 min)
+DESCRIPTION:Bloque: 🌅 Rutina Matutina & Alistamiento (75 min)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌅 Rutina Matutina & Alistamiento (75 min)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-24-1-70@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260924T070000
+DTEND:20260924T080000
+SUMMARY:🚌 Traslado a Empresa (60 min) [🎧 Podcasts Técnicos / Inglés]
+DESCRIPTION:Bloque: 🚌 Traslado a Empresa (60 min) [🎧 Podcasts Técnicos / Inglés]\nPrioridad: ⚡ MEDIA (Flexible con amortiguamiento)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🚌 Traslado a Empresa (60 min) [🎧 Podcasts Técnicos / Inglés]
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-24-2-80@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260924T080000
+DTEND:20260924T120000
+SUMMARY:🏢 Empresa: Pasantía & Prácticas Profesionales
+DESCRIPTION:Bloque: 🏢 Empresa: Pasantía & Prácticas Profesionales\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🏢 Empresa: Pasantía & Prácticas Profesionales
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-24-3-120@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260924T120000
+DTEND:20260924T130000
+SUMMARY:🚌 Retorno de Empresa (60 min) [🎧 Podcasts Técnicos / Inglés]
+DESCRIPTION:Bloque: 🚌 Retorno de Empresa (60 min) [🎧 Podcasts Técnicos / Inglés]\nPrioridad: ⚡ MEDIA (Flexible con amortiguamiento)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🚌 Retorno de Empresa (60 min) [🎧 Podcasts Técnicos / Inglés]
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-24-4-130@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260924T130000
+DTEND:20260924T140000
+SUMMARY:🥗 Almuerzo & Descanso
+DESCRIPTION:Bloque: 🥗 Almuerzo & Descanso\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🥗 Almuerzo & Descanso
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-24-5-140@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260924T140000
+DTEND:20260924T170000
+SUMMARY:🔬 GCI World (Matsuo Lab): Análisis de Datos & Algoritmos
+DESCRIPTION:Bloque: 🔬 GCI World (Matsuo Lab): Análisis de Datos & Algoritmos\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🔬 GCI World (Matsuo Lab): Análisis de Datos & Algoritmos
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-24-6-170@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260924T170000
+DTEND:20260924T183000
+SUMMARY:🛡️ Buffer / Traslado a Diseño Industrial
+DESCRIPTION:Bloque: 🛡️ Buffer / Traslado a Diseño Industrial\nPrioridad: 🌱 BAJA / BUFFER (Ajustable ante imprevistos)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🛡️ Buffer / Traslado a Diseño Industrial
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-24-7-190@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260924T190000
+DTEND:20260924T210000
+SUMMARY:🎓 UMSA: Diseño Industrial
+DESCRIPTION:Bloque: 🎓 UMSA: Diseño Industrial\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🎓 UMSA: Diseño Industrial
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-24-8-210@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260924T210000
+DTEND:20260924T213000
+SUMMARY:🚌 Retorno a casa
+DESCRIPTION:Bloque: 🚌 Retorno a casa\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🚌 Retorno a casa
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-24-9-2130@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260924T213000
+DTEND:20260924T223000
+SUMMARY:🌙 Cena & Cierre NASA
+DESCRIPTION:Bloque: 🌙 Cena & Cierre NASA\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌙 Cena & Cierre NASA
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-24-10-2230@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260924T223000
+DTEND:20260924T070000
+SUMMARY:😴 Sueño Biológico Protegido
+DESCRIPTION:Bloque: 😴 Sueño Biológico Protegido\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 😴 Sueño Biológico Protegido
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-25-0-830@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260925T083000
+DTEND:20260925T094500
+SUMMARY:🌅 Rutina Matutina & Alistamiento (75 min)
+DESCRIPTION:Bloque: 🌅 Rutina Matutina & Alistamiento (75 min)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌅 Rutina Matutina & Alistamiento (75 min)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-25-1-945@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260925T094500
+DTEND:20260925T103000
+SUMMARY:🚌 Traslado a UMSA / Buffer
+DESCRIPTION:Bloque: 🚌 Traslado a UMSA / Buffer\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🚌 Traslado a UMSA / Buffer
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-25-2-110@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260925T110000
+DTEND:20260925T130000
+SUMMARY:🎓 UMSA: Gerencia
+DESCRIPTION:Bloque: 🎓 UMSA: Gerencia\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🎓 UMSA: Gerencia
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-25-3-130@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260925T130000
+DTEND:20260925T140000
+SUMMARY:🥗 Almuerzo & Descanso
+DESCRIPTION:Bloque: 🥗 Almuerzo & Descanso\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🥗 Almuerzo & Descanso
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-25-4-140@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260925T140000
+DTEND:20260925T170000
+SUMMARY:🔬 GCI World: Cierre Semanal de Entregables Tokyo
+DESCRIPTION:Bloque: 🔬 GCI World: Cierre Semanal de Entregables Tokyo\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🔬 GCI World: Cierre Semanal de Entregables Tokyo
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-25-5-170@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260925T170000
+DTEND:20260925T180000
+SUMMARY:🏋️ Entrenamiento Físico & Salud
+DESCRIPTION:Bloque: 🏋️ Entrenamiento Físico & Salud\nPrioridad: ⚡ MEDIA (Flexible con amortiguamiento)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🏋️ Entrenamiento Físico & Salud
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-25-6-180@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260925T180000
+DTEND:20260925T200000
+SUMMARY:💰 Proyectos de Automatización con IA / n8n ($1\,000 USDT)
+DESCRIPTION:Bloque: 💰 Proyectos de Automatización con IA / n8n ($1,000 USDT)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 💰 Proyectos de Automatización con IA / n8n ($1\,000 USDT)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-25-7-200@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260925T200000
+DTEND:20260925T213000
+SUMMARY:🛡️ Buffer Libre de Viernes
+DESCRIPTION:Bloque: 🛡️ Buffer Libre de Viernes\nPrioridad: 🌱 BAJA / BUFFER (Ajustable ante imprevistos)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🛡️ Buffer Libre de Viernes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-25-8-2130@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260925T213000
+DTEND:20260925T223000
+SUMMARY:🌙 Cena & Cierre del Día
+DESCRIPTION:Bloque: 🌙 Cena & Cierre del Día\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌙 Cena & Cierre del Día
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-25-9-2230@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260925T223000
+DTEND:20260925T080000
+SUMMARY:😴 Sueño Biológico Protegido
+DESCRIPTION:Bloque: 😴 Sueño Biológico Protegido\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 😴 Sueño Biológico Protegido
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-26-0-80@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260926T080000
+DTEND:20260926T090000
+SUMMARY:🌅 Rutina Matutina & Desayuno
+DESCRIPTION:Bloque: 🌅 Rutina Matutina & Desayuno\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌅 Rutina Matutina & Desayuno
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-26-1-90@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260926T090000
+DTEND:20260926T123000
+SUMMARY:🔬 Bloque Maestro GCI World: Kaggle / Modelado Avanzado
+DESCRIPTION:Bloque: 🔬 Bloque Maestro GCI World: Kaggle / Modelado Avanzado\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🔬 Bloque Maestro GCI World: Kaggle / Modelado Avanzado
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-26-2-1230@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260926T123000
+DTEND:20260926T140000
+SUMMARY:🥗 Almuerzo & Descanso
+DESCRIPTION:Bloque: 🥗 Almuerzo & Descanso\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🥗 Almuerzo & Descanso
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-26-3-140@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260926T140000
+DTEND:20260926T170000
+SUMMARY:💰 Deep Work Freelance / Upwork ($1\,000 USDT Meta Noviembre)
+DESCRIPTION:Bloque: 💰 Deep Work Freelance / Upwork ($1,000 USDT Meta Noviembre)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 💰 Deep Work Freelance / Upwork ($1\,000 USDT Meta Noviembre)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-26-4-170@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260926T170000
+DTEND:20260926T183000
+SUMMARY:📚 Refuerzo Académico UMSA & Buffer
+DESCRIPTION:Bloque: 📚 Refuerzo Académico UMSA & Buffer\nPrioridad: 🌱 BAJA / BUFFER (Ajustable ante imprevistos)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 📚 Refuerzo Académico UMSA & Buffer
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-26-5-190@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260926T190000
+DTEND:20260926T220000
+SUMMARY:🇬🇧 Curso Virtual de Inglés (En Vivo - 3 Horas)
+DESCRIPTION:Bloque: 🇬🇧 Curso Virtual de Inglés (En Vivo - 3 Horas)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🇬🇧 Curso Virtual de Inglés (En Vivo - 3 Horas)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-26-6-220@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260926T220000
+DTEND:20260926T224500
+SUMMARY:🌙 Cena Ligera & Cierre
+DESCRIPTION:Bloque: 🌙 Cena Ligera & Cierre\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌙 Cena Ligera & Cierre
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-26-7-2245@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260926T224500
+DTEND:20260926T083000
+SUMMARY:😴 Sueño Biológico Protegido
+DESCRIPTION:Bloque: 😴 Sueño Biológico Protegido\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 😴 Sueño Biológico Protegido
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-27-0-830@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260927T083000
+DTEND:20260927T093000
+SUMMARY:🌅 Rutina Matutina & Desayuno
+DESCRIPTION:Bloque: 🌅 Rutina Matutina & Desayuno\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌅 Rutina Matutina & Desayuno
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-27-1-930@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260927T093000
+DTEND:20260927T120000
+SUMMARY:📊 Retrospectiva Semanal InvernovAH (Finanzas Binance & OKRs)
+DESCRIPTION:Bloque: 📊 Retrospectiva Semanal InvernovAH (Finanzas Binance & OKRs)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 📊 Retrospectiva Semanal InvernovAH (Finanzas Binance & OKRs)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-27-2-120@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260927T120000
+DTEND:20260927T150000
+SUMMARY:🥗 Almuerzo Familiar & Desconexión
+DESCRIPTION:Bloque: 🥗 Almuerzo Familiar & Desconexión\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🥗 Almuerzo Familiar & Desconexión
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-27-3-150@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260927T150000
+DTEND:20260927T180000
+SUMMARY:🔬 Práctica Libre GCI World / Proyectos Personales
+DESCRIPTION:Bloque: 🔬 Práctica Libre GCI World / Proyectos Personales\nPrioridad: ⚡ MEDIA (Flexible con amortiguamiento)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🔬 Práctica Libre GCI World / Proyectos Personales
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-27-4-180@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260927T180000
+DTEND:20260927T190000
+SUMMARY:🛡️ Buffer de Preparación para Clase
+DESCRIPTION:Bloque: 🛡️ Buffer de Preparación para Clase\nPrioridad: 🌱 BAJA / BUFFER (Ajustable ante imprevistos)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🛡️ Buffer de Preparación para Clase
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-27-5-190@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260927T190000
+DTEND:20260927T220000
+SUMMARY:🇬🇧 Curso Virtual de Inglés (En Vivo - 3 Horas)
+DESCRIPTION:Bloque: 🇬🇧 Curso Virtual de Inglés (En Vivo - 3 Horas)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🇬🇧 Curso Virtual de Inglés (En Vivo - 3 Horas)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-27-6-220@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260927T220000
+DTEND:20260927T224500
+SUMMARY:🌙 Cierre Semanal & Planificación de Lunes
+DESCRIPTION:Bloque: 🌙 Cierre Semanal & Planificación de Lunes\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌙 Cierre Semanal & Planificación de Lunes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-27-7-2245@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260927T224500
+DTEND:20260927T051500
+SUMMARY:😴 Sueño Biológico Protegido
+DESCRIPTION:Bloque: 😴 Sueño Biológico Protegido\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 😴 Sueño Biológico Protegido
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-28-0-515@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260928T051500
+DTEND:20260928T063000
+SUMMARY:🌅 Rutina Matutina & Alistamiento (75 min)
+DESCRIPTION:Bloque: 🌅 Rutina Matutina & Alistamiento (75 min)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌅 Rutina Matutina & Alistamiento (75 min)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-28-1-630@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260928T063000
+DTEND:20260928T070000
+SUMMARY:🚌 Traslado a UMSA (30 min)
+DESCRIPTION:Bloque: 🚌 Traslado a UMSA (30 min)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🚌 Traslado a UMSA (30 min)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-28-2-70@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260928T070000
+DTEND:20260928T090000
+SUMMARY:🎓 UMSA: Taller 1
+DESCRIPTION:Bloque: 🎓 UMSA: Taller 1\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🎓 UMSA: Taller 1
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-28-3-90@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260928T090000
+DTEND:20260928T110000
+SUMMARY:🎓 UMSA: Seguridad Industrial (Auxiliatura)
+DESCRIPTION:Bloque: 🎓 UMSA: Seguridad Industrial (Auxiliatura)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🎓 UMSA: Seguridad Industrial (Auxiliatura)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-28-4-110@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260928T110000
+DTEND:20260928T123000
+SUMMARY:🥗 Almuerzo & Buffer de Descanso
+DESCRIPTION:Bloque: 🥗 Almuerzo & Buffer de Descanso\nPrioridad: 🌱 BAJA / BUFFER (Ajustable ante imprevistos)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🥗 Almuerzo & Buffer de Descanso
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-28-5-1230@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260928T123000
+DTEND:20260928T153000
+SUMMARY:🔬 GCI World (Matsuo Lab Tokyo Univ): Data Science & Python
+DESCRIPTION:Bloque: 🔬 GCI World (Matsuo Lab Tokyo Univ): Data Science & Python\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🔬 GCI World (Matsuo Lab Tokyo Univ): Data Science & Python
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-28-6-1530@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260928T153000
+DTEND:20260928T173000
+SUMMARY:💻 Deep Work UMSA: Tareas y Estudio Técnico
+DESCRIPTION:Bloque: 💻 Deep Work UMSA: Tareas y Estudio Técnico\nPrioridad: ⚡ MEDIA (Flexible con amortiguamiento)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 💻 Deep Work UMSA: Tareas y Estudio Técnico
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-28-7-1730@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260928T173000
+DTEND:20260928T190000
+SUMMARY:🛡️ Buffer / Traslado a Diseño Industrial
+DESCRIPTION:Bloque: 🛡️ Buffer / Traslado a Diseño Industrial\nPrioridad: 🌱 BAJA / BUFFER (Ajustable ante imprevistos)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🛡️ Buffer / Traslado a Diseño Industrial
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-28-8-190@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260928T190000
+DTEND:20260928T210000
+SUMMARY:🎓 UMSA: Diseño Industrial
+DESCRIPTION:Bloque: 🎓 UMSA: Diseño Industrial\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🎓 UMSA: Diseño Industrial
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-28-9-210@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260928T210000
+DTEND:20260928T213000
+SUMMARY:🚌 Retorno a casa
+DESCRIPTION:Bloque: 🚌 Retorno a casa\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🚌 Retorno a casa
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-28-10-2130@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260928T213000
+DTEND:20260928T223000
+SUMMARY:🌙 Cena\, Desconexión Digital & Cierre NASA
+DESCRIPTION:Bloque: 🌙 Cena, Desconexión Digital & Cierre NASA\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌙 Cena\, Desconexión Digital & Cierre NASA
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-28-11-2230@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260928T223000
+DTEND:20260928T051500
+SUMMARY:😴 Sueño Biológico Protegido (Higiene de Sueño)
+DESCRIPTION:Bloque: 😴 Sueño Biológico Protegido (Higiene de Sueño)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 😴 Sueño Biológico Protegido (Higiene de Sueño)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-29-0-515@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260929T051500
+DTEND:20260929T063000
+SUMMARY:🌅 Rutina Matutina & Alistamiento (75 min)
+DESCRIPTION:Bloque: 🌅 Rutina Matutina & Alistamiento (75 min)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌅 Rutina Matutina & Alistamiento (75 min)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-29-1-630@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260929T063000
+DTEND:20260929T070000
+SUMMARY:🚌 Traslado a UMSA (30 min)
+DESCRIPTION:Bloque: 🚌 Traslado a UMSA (30 min)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🚌 Traslado a UMSA (30 min)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-29-2-70@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260929T070000
+DTEND:20260929T080000
+SUMMARY:🎓 UMSA: Taller 1
+DESCRIPTION:Bloque: 🎓 UMSA: Taller 1\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🎓 UMSA: Taller 1
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-29-3-80@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260929T080000
+DTEND:20260929T110000
+SUMMARY:🎓 UMSA: Clases [⚠️ Choque Taller 1 / Seg. Ind. / Gerencia]
+DESCRIPTION:Bloque: 🎓 UMSA: Clases [⚠️ Choque Taller 1 / Seg. Ind. / Gerencia]\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🎓 UMSA: Clases [⚠️ Choque Taller 1 / Seg. Ind. / Gerencia]
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-29-4-110@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260929T110000
+DTEND:20260929T123000
+SUMMARY:🥗 Almuerzo & Buffer
+DESCRIPTION:Bloque: 🥗 Almuerzo & Buffer\nPrioridad: 🌱 BAJA / BUFFER (Ajustable ante imprevistos)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🥗 Almuerzo & Buffer
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-29-5-1230@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260929T123000
+DTEND:20260929T153000
+SUMMARY:🔬 GCI World (Matsuo Lab): Laboratorios de Machine Learning
+DESCRIPTION:Bloque: 🔬 GCI World (Matsuo Lab): Laboratorios de Machine Learning\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🔬 GCI World (Matsuo Lab): Laboratorios de Machine Learning
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-29-6-1530@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260929T153000
+DTEND:20260929T173000
+SUMMARY:💰 Proyecto Monetización ($1\,000 USDT Meta Noviembre)
+DESCRIPTION:Bloque: 💰 Proyecto Monetización ($1,000 USDT Meta Noviembre)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 💰 Proyecto Monetización ($1\,000 USDT Meta Noviembre)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-29-7-1730@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260929T173000
+DTEND:20260929T183000
+SUMMARY:🏋️ Entrenamiento Físico & Fuerza
+DESCRIPTION:Bloque: 🏋️ Entrenamiento Físico & Fuerza\nPrioridad: ⚡ MEDIA (Flexible con amortiguamiento)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🏋️ Entrenamiento Físico & Fuerza
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-29-8-1830@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260929T183000
+DTEND:20260929T200000
+SUMMARY:📚 Refuerzo Académico & Estudio UMSA
+DESCRIPTION:Bloque: 📚 Refuerzo Académico & Estudio UMSA\nPrioridad: ⚡ MEDIA (Flexible con amortiguamiento)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 📚 Refuerzo Académico & Estudio UMSA
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-29-9-200@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260929T200000
+DTEND:20260929T213000
+SUMMARY:🛡️ Bloque Buffer Vespertino
+DESCRIPTION:Bloque: 🛡️ Bloque Buffer Vespertino\nPrioridad: 🌱 BAJA / BUFFER (Ajustable ante imprevistos)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🛡️ Bloque Buffer Vespertino
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-29-10-2130@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260929T213000
+DTEND:20260929T223000
+SUMMARY:🌙 Cena & Cierre del Día
+DESCRIPTION:Bloque: 🌙 Cena & Cierre del Día\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌙 Cena & Cierre del Día
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-29-11-2230@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260929T223000
+DTEND:20260929T051500
+SUMMARY:😴 Sueño Biológico Protegido
+DESCRIPTION:Bloque: 😴 Sueño Biológico Protegido\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 😴 Sueño Biológico Protegido
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-30-0-715@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260930T071500
+DTEND:20260930T083000
+SUMMARY:🌅 Rutina Matutina & Alistamiento (75 min)
+DESCRIPTION:Bloque: 🌅 Rutina Matutina & Alistamiento (75 min)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌅 Rutina Matutina & Alistamiento (75 min)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-30-1-830@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260930T083000
+DTEND:20260930T090000
+SUMMARY:🚌 Traslado a UMSA (30 min)
+DESCRIPTION:Bloque: 🚌 Traslado a UMSA (30 min)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🚌 Traslado a UMSA (30 min)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-30-2-90@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260930T090000
+DTEND:20260930T120000
+SUMMARY:🎓 UMSA: Seguridad Industrial (Laboratorio)
+DESCRIPTION:Bloque: 🎓 UMSA: Seguridad Industrial (Laboratorio)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🎓 UMSA: Seguridad Industrial (Laboratorio)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-30-3-120@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260930T120000
+DTEND:20260930T130000
+SUMMARY:🥗 Almuerzo & Descanso Cognitivo
+DESCRIPTION:Bloque: 🥗 Almuerzo & Descanso Cognitivo\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🥗 Almuerzo & Descanso Cognitivo
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-30-4-130@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260930T130000
+DTEND:20260930T150000
+SUMMARY:🎓 UMSA: Seguridad Industrial (Clase Teórica)
+DESCRIPTION:Bloque: 🎓 UMSA: Seguridad Industrial (Clase Teórica)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🎓 UMSA: Seguridad Industrial (Clase Teórica)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-30-5-150@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260930T150000
+DTEND:20260930T153000
+SUMMARY:🚌 Retorno a casa
+DESCRIPTION:Bloque: 🚌 Retorno a casa\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🚌 Retorno a casa
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-30-6-1530@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260930T153000
+DTEND:20260930T183000
+SUMMARY:🔬 GCI World (Matsuo Lab): Tareas y Prácticas Python/Pandas
+DESCRIPTION:Bloque: 🔬 GCI World (Matsuo Lab): Tareas y Prácticas Python/Pandas\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🔬 GCI World (Matsuo Lab): Tareas y Prácticas Python/Pandas
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-30-7-1830@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260930T183000
+DTEND:20260930T200000
+SUMMARY:💰 Prospección Remota & Monetización ($1\,000 USDT)
+DESCRIPTION:Bloque: 💰 Prospección Remota & Monetización ($1,000 USDT)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 💰 Prospección Remota & Monetización ($1\,000 USDT)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-30-8-200@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260930T200000
+DTEND:20260930T213000
+SUMMARY:🛡️ Buffer de Contingencia & Lectura
+DESCRIPTION:Bloque: 🛡️ Buffer de Contingencia & Lectura\nPrioridad: 🌱 BAJA / BUFFER (Ajustable ante imprevistos)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🛡️ Buffer de Contingencia & Lectura
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-30-9-2130@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260930T213000
+DTEND:20260930T223000
+SUMMARY:🌙 Cena & Cierre del Día
+DESCRIPTION:Bloque: 🌙 Cena & Cierre del Día\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌙 Cena & Cierre del Día
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-09-30-10-2230@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20260930T223000
+DTEND:20260930T054500
+SUMMARY:😴 Sueño Biológico Protegido
+DESCRIPTION:Bloque: 😴 Sueño Biológico Protegido\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 😴 Sueño Biológico Protegido
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-01-0-545@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261001T054500
+DTEND:20261001T070000
+SUMMARY:🌅 Rutina Matutina & Alistamiento (75 min)
+DESCRIPTION:Bloque: 🌅 Rutina Matutina & Alistamiento (75 min)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌅 Rutina Matutina & Alistamiento (75 min)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-01-1-70@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261001T070000
+DTEND:20261001T080000
+SUMMARY:🚌 Traslado a Empresa (60 min) [🎧 Podcasts Técnicos / Inglés]
+DESCRIPTION:Bloque: 🚌 Traslado a Empresa (60 min) [🎧 Podcasts Técnicos / Inglés]\nPrioridad: ⚡ MEDIA (Flexible con amortiguamiento)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🚌 Traslado a Empresa (60 min) [🎧 Podcasts Técnicos / Inglés]
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-01-2-80@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261001T080000
+DTEND:20261001T120000
+SUMMARY:🏢 Empresa: Pasantía & Prácticas Profesionales
+DESCRIPTION:Bloque: 🏢 Empresa: Pasantía & Prácticas Profesionales\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🏢 Empresa: Pasantía & Prácticas Profesionales
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-01-3-120@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261001T120000
+DTEND:20261001T130000
+SUMMARY:🚌 Retorno de Empresa (60 min) [🎧 Podcasts Técnicos / Inglés]
+DESCRIPTION:Bloque: 🚌 Retorno de Empresa (60 min) [🎧 Podcasts Técnicos / Inglés]\nPrioridad: ⚡ MEDIA (Flexible con amortiguamiento)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🚌 Retorno de Empresa (60 min) [🎧 Podcasts Técnicos / Inglés]
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-01-4-130@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261001T130000
+DTEND:20261001T140000
+SUMMARY:🥗 Almuerzo & Descanso
+DESCRIPTION:Bloque: 🥗 Almuerzo & Descanso\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🥗 Almuerzo & Descanso
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-01-5-140@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261001T140000
+DTEND:20261001T170000
+SUMMARY:🔬 GCI World (Matsuo Lab): Análisis de Datos & Algoritmos
+DESCRIPTION:Bloque: 🔬 GCI World (Matsuo Lab): Análisis de Datos & Algoritmos\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🔬 GCI World (Matsuo Lab): Análisis de Datos & Algoritmos
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-01-6-170@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261001T170000
+DTEND:20261001T183000
+SUMMARY:🛡️ Buffer / Traslado a Diseño Industrial
+DESCRIPTION:Bloque: 🛡️ Buffer / Traslado a Diseño Industrial\nPrioridad: 🌱 BAJA / BUFFER (Ajustable ante imprevistos)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🛡️ Buffer / Traslado a Diseño Industrial
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-01-7-190@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261001T190000
+DTEND:20261001T210000
+SUMMARY:🎓 UMSA: Diseño Industrial
+DESCRIPTION:Bloque: 🎓 UMSA: Diseño Industrial\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🎓 UMSA: Diseño Industrial
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-01-8-210@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261001T210000
+DTEND:20261001T213000
+SUMMARY:🚌 Retorno a casa
+DESCRIPTION:Bloque: 🚌 Retorno a casa\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🚌 Retorno a casa
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-01-9-2130@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261001T213000
+DTEND:20261001T223000
+SUMMARY:🌙 Cena & Cierre NASA
+DESCRIPTION:Bloque: 🌙 Cena & Cierre NASA\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌙 Cena & Cierre NASA
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-01-10-2230@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261001T223000
+DTEND:20261001T070000
+SUMMARY:😴 Sueño Biológico Protegido
+DESCRIPTION:Bloque: 😴 Sueño Biológico Protegido\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 😴 Sueño Biológico Protegido
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-02-0-830@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261002T083000
+DTEND:20261002T094500
+SUMMARY:🌅 Rutina Matutina & Alistamiento (75 min)
+DESCRIPTION:Bloque: 🌅 Rutina Matutina & Alistamiento (75 min)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌅 Rutina Matutina & Alistamiento (75 min)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-02-1-945@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261002T094500
+DTEND:20261002T103000
+SUMMARY:🚌 Traslado a UMSA / Buffer
+DESCRIPTION:Bloque: 🚌 Traslado a UMSA / Buffer\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🚌 Traslado a UMSA / Buffer
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-02-2-110@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261002T110000
+DTEND:20261002T130000
+SUMMARY:🎓 UMSA: Gerencia
+DESCRIPTION:Bloque: 🎓 UMSA: Gerencia\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🎓 UMSA: Gerencia
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-02-3-130@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261002T130000
+DTEND:20261002T140000
+SUMMARY:🥗 Almuerzo & Descanso
+DESCRIPTION:Bloque: 🥗 Almuerzo & Descanso\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🥗 Almuerzo & Descanso
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-02-4-140@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261002T140000
+DTEND:20261002T170000
+SUMMARY:🔬 GCI World: Cierre Semanal de Entregables Tokyo
+DESCRIPTION:Bloque: 🔬 GCI World: Cierre Semanal de Entregables Tokyo\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🔬 GCI World: Cierre Semanal de Entregables Tokyo
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-02-5-170@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261002T170000
+DTEND:20261002T180000
+SUMMARY:🏋️ Entrenamiento Físico & Salud
+DESCRIPTION:Bloque: 🏋️ Entrenamiento Físico & Salud\nPrioridad: ⚡ MEDIA (Flexible con amortiguamiento)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🏋️ Entrenamiento Físico & Salud
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-02-6-180@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261002T180000
+DTEND:20261002T200000
+SUMMARY:💰 Proyectos de Automatización con IA / n8n ($1\,000 USDT)
+DESCRIPTION:Bloque: 💰 Proyectos de Automatización con IA / n8n ($1,000 USDT)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 💰 Proyectos de Automatización con IA / n8n ($1\,000 USDT)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-02-7-200@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261002T200000
+DTEND:20261002T213000
+SUMMARY:🛡️ Buffer Libre de Viernes
+DESCRIPTION:Bloque: 🛡️ Buffer Libre de Viernes\nPrioridad: 🌱 BAJA / BUFFER (Ajustable ante imprevistos)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🛡️ Buffer Libre de Viernes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-02-8-2130@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261002T213000
+DTEND:20261002T223000
+SUMMARY:🌙 Cena & Cierre del Día
+DESCRIPTION:Bloque: 🌙 Cena & Cierre del Día\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌙 Cena & Cierre del Día
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-02-9-2230@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261002T223000
+DTEND:20261002T080000
+SUMMARY:😴 Sueño Biológico Protegido
+DESCRIPTION:Bloque: 😴 Sueño Biológico Protegido\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 😴 Sueño Biológico Protegido
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-03-0-80@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261003T080000
+DTEND:20261003T090000
+SUMMARY:🌅 Rutina Matutina & Desayuno
+DESCRIPTION:Bloque: 🌅 Rutina Matutina & Desayuno\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌅 Rutina Matutina & Desayuno
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-03-1-90@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261003T090000
+DTEND:20261003T123000
+SUMMARY:🔬 Bloque Maestro GCI World: Kaggle / Modelado Avanzado
+DESCRIPTION:Bloque: 🔬 Bloque Maestro GCI World: Kaggle / Modelado Avanzado\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🔬 Bloque Maestro GCI World: Kaggle / Modelado Avanzado
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-03-2-1230@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261003T123000
+DTEND:20261003T140000
+SUMMARY:🥗 Almuerzo & Descanso
+DESCRIPTION:Bloque: 🥗 Almuerzo & Descanso\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🥗 Almuerzo & Descanso
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-03-3-140@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261003T140000
+DTEND:20261003T170000
+SUMMARY:💰 Deep Work Freelance / Upwork ($1\,000 USDT Meta Noviembre)
+DESCRIPTION:Bloque: 💰 Deep Work Freelance / Upwork ($1,000 USDT Meta Noviembre)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 💰 Deep Work Freelance / Upwork ($1\,000 USDT Meta Noviembre)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-03-4-170@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261003T170000
+DTEND:20261003T183000
+SUMMARY:📚 Refuerzo Académico UMSA & Buffer
+DESCRIPTION:Bloque: 📚 Refuerzo Académico UMSA & Buffer\nPrioridad: 🌱 BAJA / BUFFER (Ajustable ante imprevistos)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 📚 Refuerzo Académico UMSA & Buffer
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-03-5-190@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261003T190000
+DTEND:20261003T220000
+SUMMARY:🇬🇧 Curso Virtual de Inglés (En Vivo - 3 Horas)
+DESCRIPTION:Bloque: 🇬🇧 Curso Virtual de Inglés (En Vivo - 3 Horas)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🇬🇧 Curso Virtual de Inglés (En Vivo - 3 Horas)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-03-6-220@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261003T220000
+DTEND:20261003T224500
+SUMMARY:🌙 Cena Ligera & Cierre
+DESCRIPTION:Bloque: 🌙 Cena Ligera & Cierre\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌙 Cena Ligera & Cierre
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-03-7-2245@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261003T224500
+DTEND:20261003T083000
+SUMMARY:😴 Sueño Biológico Protegido
+DESCRIPTION:Bloque: 😴 Sueño Biológico Protegido\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 😴 Sueño Biológico Protegido
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-04-0-830@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261004T083000
+DTEND:20261004T093000
+SUMMARY:🌅 Rutina Matutina & Desayuno
+DESCRIPTION:Bloque: 🌅 Rutina Matutina & Desayuno\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌅 Rutina Matutina & Desayuno
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-04-1-930@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261004T093000
+DTEND:20261004T120000
+SUMMARY:📊 Retrospectiva Semanal InvernovAH (Finanzas Binance & OKRs)
+DESCRIPTION:Bloque: 📊 Retrospectiva Semanal InvernovAH (Finanzas Binance & OKRs)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 📊 Retrospectiva Semanal InvernovAH (Finanzas Binance & OKRs)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-04-2-120@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261004T120000
+DTEND:20261004T150000
+SUMMARY:🥗 Almuerzo Familiar & Desconexión
+DESCRIPTION:Bloque: 🥗 Almuerzo Familiar & Desconexión\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🥗 Almuerzo Familiar & Desconexión
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-04-3-150@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261004T150000
+DTEND:20261004T180000
+SUMMARY:🔬 Práctica Libre GCI World / Proyectos Personales
+DESCRIPTION:Bloque: 🔬 Práctica Libre GCI World / Proyectos Personales\nPrioridad: ⚡ MEDIA (Flexible con amortiguamiento)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🔬 Práctica Libre GCI World / Proyectos Personales
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-04-4-180@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261004T180000
+DTEND:20261004T190000
+SUMMARY:🛡️ Buffer de Preparación para Clase
+DESCRIPTION:Bloque: 🛡️ Buffer de Preparación para Clase\nPrioridad: 🌱 BAJA / BUFFER (Ajustable ante imprevistos)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🛡️ Buffer de Preparación para Clase
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-04-5-190@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261004T190000
+DTEND:20261004T220000
+SUMMARY:🇬🇧 Curso Virtual de Inglés (En Vivo - 3 Horas)
+DESCRIPTION:Bloque: 🇬🇧 Curso Virtual de Inglés (En Vivo - 3 Horas)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🇬🇧 Curso Virtual de Inglés (En Vivo - 3 Horas)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-04-6-220@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261004T220000
+DTEND:20261004T224500
+SUMMARY:🌙 Cierre Semanal & Planificación de Lunes
+DESCRIPTION:Bloque: 🌙 Cierre Semanal & Planificación de Lunes\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌙 Cierre Semanal & Planificación de Lunes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-04-7-2245@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261004T224500
+DTEND:20261004T051500
+SUMMARY:😴 Sueño Biológico Protegido
+DESCRIPTION:Bloque: 😴 Sueño Biológico Protegido\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 😴 Sueño Biológico Protegido
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-05-0-515@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261005T051500
+DTEND:20261005T063000
+SUMMARY:🌅 Rutina Matutina & Alistamiento (75 min)
+DESCRIPTION:Bloque: 🌅 Rutina Matutina & Alistamiento (75 min)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌅 Rutina Matutina & Alistamiento (75 min)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-05-1-630@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261005T063000
+DTEND:20261005T070000
+SUMMARY:🚌 Traslado a UMSA (30 min)
+DESCRIPTION:Bloque: 🚌 Traslado a UMSA (30 min)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🚌 Traslado a UMSA (30 min)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-05-2-70@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261005T070000
+DTEND:20261005T090000
+SUMMARY:🎓 UMSA: Taller 1
+DESCRIPTION:Bloque: 🎓 UMSA: Taller 1\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🎓 UMSA: Taller 1
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-05-3-90@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261005T090000
+DTEND:20261005T110000
+SUMMARY:🎓 UMSA: Seguridad Industrial (Auxiliatura)
+DESCRIPTION:Bloque: 🎓 UMSA: Seguridad Industrial (Auxiliatura)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🎓 UMSA: Seguridad Industrial (Auxiliatura)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-05-4-110@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261005T110000
+DTEND:20261005T123000
+SUMMARY:🥗 Almuerzo & Buffer de Descanso
+DESCRIPTION:Bloque: 🥗 Almuerzo & Buffer de Descanso\nPrioridad: 🌱 BAJA / BUFFER (Ajustable ante imprevistos)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🥗 Almuerzo & Buffer de Descanso
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-05-5-1230@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261005T123000
+DTEND:20261005T153000
+SUMMARY:🔬 GCI World (Matsuo Lab Tokyo Univ): Data Science & Python
+DESCRIPTION:Bloque: 🔬 GCI World (Matsuo Lab Tokyo Univ): Data Science & Python\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🔬 GCI World (Matsuo Lab Tokyo Univ): Data Science & Python
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-05-6-1530@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261005T153000
+DTEND:20261005T173000
+SUMMARY:💻 Deep Work UMSA: Tareas y Estudio Técnico
+DESCRIPTION:Bloque: 💻 Deep Work UMSA: Tareas y Estudio Técnico\nPrioridad: ⚡ MEDIA (Flexible con amortiguamiento)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 💻 Deep Work UMSA: Tareas y Estudio Técnico
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-05-7-1730@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261005T173000
+DTEND:20261005T190000
+SUMMARY:🛡️ Buffer / Traslado a Diseño Industrial
+DESCRIPTION:Bloque: 🛡️ Buffer / Traslado a Diseño Industrial\nPrioridad: 🌱 BAJA / BUFFER (Ajustable ante imprevistos)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🛡️ Buffer / Traslado a Diseño Industrial
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-05-8-190@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261005T190000
+DTEND:20261005T210000
+SUMMARY:🎓 UMSA: Diseño Industrial
+DESCRIPTION:Bloque: 🎓 UMSA: Diseño Industrial\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🎓 UMSA: Diseño Industrial
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-05-9-210@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261005T210000
+DTEND:20261005T213000
+SUMMARY:🚌 Retorno a casa
+DESCRIPTION:Bloque: 🚌 Retorno a casa\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🚌 Retorno a casa
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-05-10-2130@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261005T213000
+DTEND:20261005T223000
+SUMMARY:🌙 Cena\, Desconexión Digital & Cierre NASA
+DESCRIPTION:Bloque: 🌙 Cena, Desconexión Digital & Cierre NASA\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌙 Cena\, Desconexión Digital & Cierre NASA
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-05-11-2230@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261005T223000
+DTEND:20261005T051500
+SUMMARY:😴 Sueño Biológico Protegido (Higiene de Sueño)
+DESCRIPTION:Bloque: 😴 Sueño Biológico Protegido (Higiene de Sueño)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 😴 Sueño Biológico Protegido (Higiene de Sueño)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-06-0-515@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261006T051500
+DTEND:20261006T063000
+SUMMARY:🌅 Rutina Matutina & Alistamiento (75 min)
+DESCRIPTION:Bloque: 🌅 Rutina Matutina & Alistamiento (75 min)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌅 Rutina Matutina & Alistamiento (75 min)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-06-1-630@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261006T063000
+DTEND:20261006T070000
+SUMMARY:🚌 Traslado a UMSA (30 min)
+DESCRIPTION:Bloque: 🚌 Traslado a UMSA (30 min)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🚌 Traslado a UMSA (30 min)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-06-2-70@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261006T070000
+DTEND:20261006T080000
+SUMMARY:🎓 UMSA: Taller 1
+DESCRIPTION:Bloque: 🎓 UMSA: Taller 1\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🎓 UMSA: Taller 1
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-06-3-80@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261006T080000
+DTEND:20261006T110000
+SUMMARY:🎓 UMSA: Clases [⚠️ Choque Taller 1 / Seg. Ind. / Gerencia]
+DESCRIPTION:Bloque: 🎓 UMSA: Clases [⚠️ Choque Taller 1 / Seg. Ind. / Gerencia]\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🎓 UMSA: Clases [⚠️ Choque Taller 1 / Seg. Ind. / Gerencia]
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-06-4-110@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261006T110000
+DTEND:20261006T123000
+SUMMARY:🥗 Almuerzo & Buffer
+DESCRIPTION:Bloque: 🥗 Almuerzo & Buffer\nPrioridad: 🌱 BAJA / BUFFER (Ajustable ante imprevistos)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🥗 Almuerzo & Buffer
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-06-5-1230@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261006T123000
+DTEND:20261006T153000
+SUMMARY:🔬 GCI World (Matsuo Lab): Laboratorios de Machine Learning
+DESCRIPTION:Bloque: 🔬 GCI World (Matsuo Lab): Laboratorios de Machine Learning\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🔬 GCI World (Matsuo Lab): Laboratorios de Machine Learning
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-06-6-1530@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261006T153000
+DTEND:20261006T173000
+SUMMARY:💰 Proyecto Monetización ($1\,000 USDT Meta Noviembre)
+DESCRIPTION:Bloque: 💰 Proyecto Monetización ($1,000 USDT Meta Noviembre)\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 💰 Proyecto Monetización ($1\,000 USDT Meta Noviembre)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-06-7-1730@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261006T173000
+DTEND:20261006T183000
+SUMMARY:🏋️ Entrenamiento Físico & Fuerza
+DESCRIPTION:Bloque: 🏋️ Entrenamiento Físico & Fuerza\nPrioridad: ⚡ MEDIA (Flexible con amortiguamiento)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🏋️ Entrenamiento Físico & Fuerza
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-06-8-1830@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261006T183000
+DTEND:20261006T200000
+SUMMARY:📚 Refuerzo Académico & Estudio UMSA
+DESCRIPTION:Bloque: 📚 Refuerzo Académico & Estudio UMSA\nPrioridad: ⚡ MEDIA (Flexible con amortiguamiento)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 📚 Refuerzo Académico & Estudio UMSA
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-06-9-200@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261006T200000
+DTEND:20261006T213000
+SUMMARY:🛡️ Bloque Buffer Vespertino
+DESCRIPTION:Bloque: 🛡️ Bloque Buffer Vespertino\nPrioridad: 🌱 BAJA / BUFFER (Ajustable ante imprevistos)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🛡️ Bloque Buffer Vespertino
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-06-10-2130@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261006T213000
+DTEND:20261006T223000
+SUMMARY:🌙 Cena & Cierre del Día
+DESCRIPTION:Bloque: 🌙 Cena & Cierre del Día\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 🌙 Cena & Cierre del Día
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nexus-2026-10-06-11-2230@nexuslifeos.cloud
+DTSTAMP:20260923T050701Z
+DTSTART:20261006T223000
+DTEND:20261006T051500
+SUMMARY:😴 Sueño Biológico Protegido
+DESCRIPTION:Bloque: 😴 Sueño Biológico Protegido\nPrioridad: 🔥 ALTA PRIORIDAD (Inamovible)\nCategoría: General\nMetodología: Álvaro Hernández (InvernovAH) - Cero Fricción Cognitiva
+CATEGORIES:NEXUS
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Próximo bloque en 10 min: 😴 Sueño Biológico Protegido
+END:VALARM
+END:VEVENT
+END:VCALENDAR

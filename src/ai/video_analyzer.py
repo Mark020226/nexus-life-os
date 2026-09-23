@@ -102,7 +102,7 @@ def analyze_with_gemini(url: str, meta: Dict[str, Any], custom_prompt: Optional[
     if not api_key:
         return None
         
-    endpoint = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
+    endpoint = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key={api_key}"
     
     system_instruction = """
     Eres el Asistente de Inteligencia Artificial de 'NEXUS Life OS', un sistema de optimización personal basado en la filosofía de Álvaro Hernández (InvernovAH):

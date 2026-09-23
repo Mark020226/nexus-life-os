@@ -673,18 +673,31 @@ with tab_nasa:
                     st.success("¡Itinerario actualizado y sincronizado en la base de datos!")
                     st.rerun()
 
-        # Selector de Fecha para ver el Itinerario
-        col_sch_d, col_sch_btn = st.columns([2, 1])
+        # Selector de Fecha para ver el Itinerario y Exportar a Calendario
+        from src.integrations.calendar_sync import generate_ics_content
+        ics_data = generate_ics_content(DB_PATH, days_ahead=14)
+
+        col_sch_d, col_sch_btn, col_sch_cal = st.columns([1.5, 1, 1.5])
         with col_sch_d:
             sch_date = st.date_input("Ver itinerario para la fecha:", date.today(), key="sch_date_picker")
         with col_sch_btn:
             st.markdown("<br>", unsafe_allow_html=True)
-            if st.button("🔄 Regenerar / Resetear Horario Base de Hoy"):
+            if st.button("🔄 Resetear Horario"):
                 cur.execute("DELETE FROM dynamic_schedule WHERE date = ?", (str(sch_date),))
                 scheduler._seed_default_schedule(cur, str(sch_date))
                 conn.commit()
                 st.success("Horario base restablecido.")
                 st.rerun()
+        with col_sch_cal:
+            st.markdown("<br>", unsafe_allow_html=True)
+            st.download_button(
+                label="📥 Sincronizar Google Calendar (.ics)",
+                data=ics_data,
+                file_name="nexus_schedule.ics",
+                mime="text/calendar",
+                help="Descarga tu itinerario con alertas de 10 min y bloques de color para importarlo en Google Calendar en tu celular.",
+                use_container_width=True
+            )
 
         # Visualizador del Itinerario Dinámico
         items = scheduler.get_schedule(str(sch_date))

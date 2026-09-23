@@ -176,6 +176,11 @@ class DynamicScheduler:
         cur = conn.cursor()
         cur.execute("SELECT * FROM dynamic_schedule WHERE date = ? ORDER BY start_time ASC", (target_date,))
         rows = [dict(r) for r in cur.fetchall()]
+        if not rows:
+            self._seed_default_schedule(cur, target_date)
+            conn.commit()
+            cur.execute("SELECT * FROM dynamic_schedule WHERE date = ? ORDER BY start_time ASC", (target_date,))
+            rows = [dict(r) for r in cur.fetchall()]
         conn.close()
         return rows
 
