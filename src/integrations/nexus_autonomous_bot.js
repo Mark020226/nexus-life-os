@@ -93,6 +93,15 @@ function handleNexusIntelligence(text, chatId) {
     return getTodayScheduleReport();
   }
 
+  // B2. BRIEFING UNIFICADO 360° (GMAIL + OMNICAMPUS + SLACK)
+  if (lower.indexOf("briefing") !== -1 || lower.indexOf("actualízame") !== -1 || 
+      lower.indexOf("actualizame") !== -1 || lower.indexOf("qué está pasando") !== -1 || 
+      lower.indexOf("que esta pasando") !== -1 || lower.indexOf("novedades") !== -1 ||
+      lower.indexOf("omnicampus") !== -1 || lower.indexOf("slack") !== -1 || 
+      lower.indexOf("correo") !== -1 || lower === "/briefing") {
+    return getUnifiedTriPlatformBriefing();
+  }
+
   // C. FINANZAS / GASTOS / INGRESOS
   if (lower.indexOf("gasté") !== -1 || lower.indexOf("gaste") !== -1 || 
       lower.indexOf("gasto") !== -1 || lower.indexOf("compré") !== -1 || 
@@ -247,6 +256,85 @@ function getTodayScheduleReport() {
   }
 
   return lines.join("\n");
+}
+
+/**
+ * BRIEFING UNIFICADO 360°: GMAIL + OMNICAMPUS + SLACK
+ * Extrae en vivo las novedades de tus 3 plataformas y las sintetiza con Gemini Flash
+ */
+function getUnifiedTriPlatformBriefing() {
+  var dataReport = [];
+
+  // 1. GMAIL (Correos no leídos y recientes importantes)
+  try {
+    var gmailThreads = GmailApp.search("is:unread newer_than:2d", 0, 8);
+    var gmailItems = [];
+    for (var i = 0; i < gmailThreads.length; i++) {
+      var msg = gmailThreads[i].getMessages()[0];
+      gmailItems.push("- De: " + msg.getFrom() + " | Asunto: " + msg.getSubject() + " | Resumen: " + msg.getPlainBody().substring(0, 160).replace(/\n/g, " "));
+    }
+    dataReport.push("=== CORREOS ELECTRÓNICOS RECIENTES (GMAIL) ===\n" + (gmailItems.length > 0 ? gmailItems.join("\n") : "No hay correos no leídos recientes."));
+  } catch (err) {
+    dataReport.push("=== GMAIL === Error leyendo: " + err.toString());
+  }
+
+  // 2. OMNICAMPUS & GCI WORLD TOKIO (Alertas de tareas, anuncios, laboratorios)
+  try {
+    var omniThreads = GmailApp.search('from:omnicampus OR "OmniCampus" OR "GCI 2026" OR "Matsuo" OR "Tokyo" newer_than:7d', 0, 5);
+    var omniItems = [];
+    for (var j = 0; j < omniThreads.length; j++) {
+      var oMsg = omniThreads[j].getMessages()[0];
+      omniItems.push("- Anuncio/Tarea: " + oMsg.getSubject() + " | Fecha: " + oMsg.getDate().toLocaleDateString() + " | Texto: " + oMsg.getPlainBody().substring(0, 200).replace(/\n/g, " "));
+    }
+    dataReport.push("=== OMNICAMPUS / MATSUO LAB TOKIO ===\n" + (omniItems.length > 0 ? omniItems.join("\n") : "No se detectaron correos recientes con la etiqueta OmniCampus/GCI."));
+  } catch (err2) {
+    dataReport.push("=== OMNICAMPUS === Error: " + err2.toString());
+  }
+
+  // 3. SLACK (Notificaciones y menciones)
+  try {
+    var slackItems = [];
+    // Si hay token directo de Slack
+    var slackToken = (typeof SLACK_API_TOKEN !== "undefined" && SLACK_API_TOKEN) ? SLACK_API_TOKEN : "";
+    if (slackToken && slackToken.indexOf("xox") === 0) {
+      try {
+        var sUrl = "https://slack.com/api/conversations.list?types=public_channel,private_channel&limit=5";
+        var sResp = UrlFetchApp.fetch(sUrl, {
+          headers: {"Authorization": "Bearer " + slackToken},
+          muteHttpExceptions: true
+        });
+        if (sResp.getResponseCode() === 200) {
+          slackItems.push("- Conexión API a Slack exitosa.");
+        }
+      } catch (sErr) {}
+    }
+    
+    // Notificaciones de Slack recibidas por correo
+    var slackThreads = GmailApp.search('from:slack.com newer_than:3d', 0, 5);
+    for (var s = 0; s < slackThreads.length; s++) {
+      var sMsg = slackThreads[s].getMessages()[0];
+      slackItems.push("- Slack: " + sMsg.getSubject() + " | " + sMsg.getPlainBody().substring(0, 160).replace(/\n/g, " "));
+    }
+
+    dataReport.push("=== SLACK (GCI WORLD / EQUIPOS) ===\n" + (slackItems.length > 0 ? slackItems.join("\n") : "No hay menciones ni avisos pendientes de Slack."));
+  } catch (err3) {
+    dataReport.push("=== SLACK === Error: " + err3.toString());
+  }
+
+  // 4. Sintetizar con Gemini Flash
+  var promptBriefing = 
+    "Eres el Copiloto Ejecutivo de NEXUS Life OS para Mark Eduardo Terrazas Luna (estudiante de Ingeniería Industrial UMSA, estudiante de GCI World en la Universidad de Tokio Matsuo Lab, practicante de Empresa). " +
+    "Analiza la siguiente información recién extraída en tiempo real de sus 3 plataformas:\n\n" +
+    dataReport.join("\n\n") + "\n\n" +
+    "Sintetiza un BRIEFING EJECUTIVO DE ALTO NIVEL (Filosofía Álvaro Hernández / InvernovAH: cero paja, foco en prioridades, claridad absoluta) con el siguiente formato Markdown para Telegram:\n" +
+    "📋 **BRIEFING INTELIGENTE 360° NEXUS:**\n\n" +
+    "🚨 **1. ACCIÓN INMEDIATA / URGENTE** (¿Qué requiere respuesta de Mark hoy? Si no hay nada urgente, dilo con calma)\n" +
+    "🇯🇵 **2. OMNICAMPUS & GCI WORLD TOKIO** (Tareas, fechas límites de Kaggle/laboratorios, avisos del Sensei)\n" +
+    "🏛️ **3. UMSA & EMPRESA** (Notas, avisos de docentes, comunicados laborales)\n" +
+    "💬 **4. SLACK** (Menciones, dudas resueltas y anuncios de comunidad)\n" +
+    "💡 **5. PRÓXIMA MICRO-ACCIÓN RECOMENDADA** (Qué debería hacer en su siguiente bloque disponible)";
+
+  return callGeminiBrain(promptBriefing);
 }
 
 /**
