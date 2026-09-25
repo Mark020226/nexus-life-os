@@ -197,27 +197,41 @@ def handle_telegram_update(update: dict):
     # Enviar respuesta
     send_telegram_message(chat_id, reply)
 
-def poll_telegram(once=False):
-    """Realiza un ciclo de consulta de actualizaciones a la API de Telegram."""
-    offset = 0
-    api_url = f"https://api.telegram.org/bot{BOT_TOKEN}/getUpdates"
-    
-    try:
-        req = urllib.request.Request(f"{api_url}?offset={offset}&timeout=5")
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            if resp.status == 200:
-                data = json.loads(resp.read().decode('utf-8'))
-                results = data.get("result", [])
-                for upd in results:
-                    upd_id = upd.get("update_id", 0)
-                    handle_telegram_update(upd)
-                    offset = max(offset, upd_id + 1)
-                
-                # Confirmar lectura de actualizaciones
-                if results and offset > 0:
-                    urllib.request.urlopen(f"{api_url}?offset={offset}&timeout=1")
-    except Exception as e:
-        print(f"Error en polling de Telegram: {e}")
+_poller_thread = None
+_poller_running = False
+
+def start_background_poller():
+    """Inicia el servicio de polling en un hilo secundario continuo para la nube o local."""
+    global _poller_thread, _poller_running
+    if _poller_running and _poller_thread and _poller_thread.is_alive():
+        return
+    _poller_running = True
+
+    def loop():
+        offset = 0
+        while _poller_running:
+            try:
+                if not BOT_TOKEN:
+                    time.sleep(5)
+                    continue
+                api_url = f"https://api.telegram.org/bot{BOT_TOKEN}/getUpdates"
+                req = urllib.request.Request(f"{api_url}?offset={offset}&timeout=10")
+                with urllib.request.urlopen(req, timeout=15) as resp:
+                    if resp.status == 200:
+                        data = json.loads(resp.read().decode('utf-8'))
+                        results = data.get("result", [])
+                        for upd in results:
+                            upd_id = upd.get("update_id", 0)
+                            handle_telegram_update(upd)
+                            offset = max(offset, upd_id + 1)
+            except Exception as e:
+                time.sleep(3)
+            time.sleep(1)
+
+    import threading
+    _poller_thread = threading.Thread(target=loop, daemon=True, name="NEXUSTelegramPoller")
+    _poller_thread.start()
+    print("Servicio de Telegram iniciado en segundo plano.")
 
 if __name__ == "__main__":
     print(f"Iniciando servicio de Telegram para @HAZARDNexusbot...")

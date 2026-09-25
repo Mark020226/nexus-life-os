@@ -230,12 +230,63 @@ class TelegramNEXUSAssistant:
         return "\n".join(lines)
 
     def _handle_conversational_fallback(self, text: str) -> str:
-        """Responde preguntas o solicitudes de productividad usando el enfoque de ingeniería de vida."""
-        return (
-            f"🤖 **NEXUS Assistant:** Recibí tu mensaje: *'{text}'*.\n\n"
-            f"Puedes decirme cosas como:\n"
-            f"• *'Surgió un imprevisto de 2 horas a las 15:00'* (recalculará tu día sin fricción).\n"
-            f"• Enviar cualquier link de video o reel de Instagram/YouTube (extraerá el recurso real y lo clasificará).\n"
-            f"• *'Gasté 45 Bs en libros'* (registrará finanzas).\n"
-            f"• *'¿Cuál es mi plan de hoy?'* (te mostrará tu horario activo)."
+        """Responde preguntas o solicitudes de productividad y estudio usando Gemini 3.6 Flash."""
+        if not self.gemini_key:
+            return (
+                f"🤖 **NEXUS Assistant:** Recibí tu mensaje: *'{text}'*.\n\n"
+                f"Puedes decirme cosas como:\n"
+                f"• *'Surgió un imprevisto de 2 horas a las 15:00'* (recalculará tu día sin fricción).\n"
+                f"• Enviar cualquier link de video o recurso (lo extraerá y clasificará).\n"
+                f"• *'Gasté 45 Bs en libros'* (registrará finanzas).\n"
+                f"• *'¿Cuál es mi plan de hoy?'* (te mostrará tu horario activo)."
+            )
+
+        import urllib.request
+        import json
+
+        system_instruction = (
+            "Eres el Asistente y Copiloto de Inteligencia Artificial de 'NEXUS Life OS' para Mark Eduardo Terrazas Luna, "
+            "estudiante de Ingeniería Industrial en la UMSA (La Paz, Bolivia), participante de GCI World Tokio 2026 y practicante de Empresa. "
+            "Tu metodología se basa en Álvaro Hernández (InvernovAH): cero fricción, apalancamiento 80/20, rigor ingenieril y protección del descanso biológico. "
+            "Si Mark te consulta sobre un examen, materia (Gerencia de Proyectos, Seguridad Industrial, Taller 1, Diseño Industrial, etc.) o plan de estudio, "
+            "dale una guía estratégica magistral y directa para asegurar la máxima calificación (100 puntos): "
+            "fórmulas clave indispensables (EVM, CPM/PERT, etc.), trampas conceptuales típicas, método de resolución paso a paso y cronograma de choque. "
+            "Responde en español, con formato Markdown limpio y altamente legible en celular (viñetas, negritas, emojis estratégicos)."
         )
+
+        payload = {
+            "contents": [
+                {
+                    "parts": [
+                        {"text": f"{system_instruction}\n\nMensaje de Mark:\n{text}"}
+                    ]
+                }
+            ]
+        }
+
+        models = ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemini-3.6-flash"]
+        last_error = ""
+
+        for m in models:
+            endpoint = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent?key={self.gemini_key}"
+            try:
+                req = urllib.request.Request(
+                    endpoint,
+                    data=json.dumps(payload).encode('utf-8'),
+                    headers={'Content-Type': 'application/json'},
+                    method='POST'
+                )
+                with urllib.request.urlopen(req, timeout=25) as resp:
+                    data = json.loads(resp.read().decode('utf-8'))
+                    candidates = data.get("candidates", [])
+                    if candidates:
+                        parts = candidates[0].get("content", {}).get("parts", [])
+                        if parts:
+                            return parts[0].get("text", "").strip()
+            except Exception as e:
+                last_error = str(e)
+                continue
+
+        return f"🤖 **NEXUS Assistant:** Ocurrió un error consultando a la IA: {last_error}"
+
+        return "🤖 No pude generar una respuesta en este momento. Inténtalo de nuevo."

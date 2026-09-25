@@ -65,6 +65,15 @@ def get_secret(key, default=""):
     except Exception:
         return os.environ.get(key, default)
 
+# Iniciar servicio de Telegram en segundo plano una sola vez
+if "telegram_poller_active" not in st.session_state:
+    try:
+        from src.integrations.telegram_service import start_background_poller
+        start_background_poller()
+        st.session_state["telegram_poller_active"] = True
+    except Exception as e:
+        pass
+
 # ------------------------------------------------------------
 # DEFENSIVE TYPE-SAFETY HELPERS
 # ------------------------------------------------------------
