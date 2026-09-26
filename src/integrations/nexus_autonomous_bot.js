@@ -1,21 +1,20 @@
 /**
  * ============================================================================
- * NEXUS Life OS — Autonomous 24/7 Cloud Webhook & Brain
+ * NEXUS Life OS — Autonomous 24/7 Cloud Webhook & Brain v3.5
  * ============================================================================
  * Host: Google Apps Script (Google Cloud Serverless - 100% Free Forever)
  * Propietario: Mark Eduardo Terrazas Luna (mark23terrazas30@gmail.com)
- * Integraciones: Telegram Bot (@HAZARDNexusbot) + Google Calendar + Gemini AI
+ * Integraciones: Telegram Bot (@HAZARDNexusbot) + Google Calendar + Gmail + Gemini AI
  * Cero dependencia de PC o Antigravity encendidos.
  * ============================================================================
  */
 
 // CONFIGURACIÓN CENTRAL DE CREDENCIALES
-// Configúralas en 'Configuración del proyecto' > 'Propiedades de la secuencia de comandos'
-// o reemplaza los textos con tus claves al pegarlo en script.google.com
 var PROPS = PropertiesService.getScriptProperties();
 var TELEGRAM_BOT_TOKEN = PROPS.getProperty("TELEGRAM_BOT_TOKEN") || "PEGAR_TELEGRAM_BOT_TOKEN_AQUI";
 var GEMINI_API_KEY = PROPS.getProperty("GEMINI_API_KEY") || "PEGAR_GEMINI_API_KEY_AQUI";
 var TIMEZONE = "America/La_Paz"; // UTC-4 Bolivia
+var SLACK_API_TOKEN = ""; // Opcional
 
 /**
  * Punto de entrada HTTP POST: Telegram empuja cada mensaje aquí en tiempo real.
@@ -29,6 +28,18 @@ function doPost(e) {
     var update = JSON.parse(e.postData.contents);
     var message = update.message || update.edited_message;
     if (!message) return ContentService.createTextOutput("OK");
+
+    // 🛑 FILTRO ANTIBUCLE Y DEDUPLICACIÓN DE TELEGRAM
+    // Si una función tarda más de 3s, Telegram reintenta el mismo mensaje.
+    // Con este caché de 5 minutos, garantizamos que cada mensaje se procesa UNA SOLA VEZ.
+    var cache = CacheService.getScriptCache();
+    var updateId = update.update_id ? update.update_id.toString() : null;
+    if (updateId) {
+      if (cache.get("up_" + updateId)) {
+        return ContentService.createTextOutput("OK"); // Ignorar reintento duplicado
+      }
+      cache.put("up_" + updateId, "1", 300); // Recordar por 5 minutos
+    }
 
     var chatId = message.chat.id;
     var text = message.text || message.caption || "";
@@ -78,7 +89,7 @@ function doGet(e) {
 function handleNexusIntelligence(text, chatId) {
   var lower = text.toLowerCase();
 
-  // A. IMPREVISTO / RECALCULAR HORARIO
+  // A. IMPREVISTO / RECALCULAR HORARIO (Prioridad #1)
   if (lower.indexOf("imprevisto") !== -1 || lower.indexOf("surgio") !== -1 || 
       lower.indexOf("surgió") !== -1 || lower.indexOf("retraso") !== -1 || 
       lower.indexOf("ocupado") !== -1 || lower.indexOf("recalcular") !== -1 ||
@@ -87,22 +98,22 @@ function handleNexusIntelligence(text, chatId) {
   }
 
   // B. CONSULTA DE ITINERARIO / PLAN DE HOY
-  if (lower.indexOf("itinerario") !== -1 || lower.indexOf("plan de hoy") !== -1 || 
-      lower.indexOf("qué tengo hoy") !== -1 || lower.indexOf("que tengo hoy") !== -1 || 
-      lower === "/hoy" || lower === "/itinerario") {
+  if (lower === "/hoy" || lower === "/itinerario" || lower.indexOf("itinerario") !== -1 || 
+      lower.indexOf("plan de hoy") !== -1 || lower.indexOf("qué tengo hoy") !== -1 || 
+      lower.indexOf("que tengo hoy") !== -1) {
     return getTodayScheduleReport();
   }
 
-  // B2. BRIEFING UNIFICADO 360° (GMAIL + OMNICAMPUS + SLACK)
-  if (lower.indexOf("briefing") !== -1 || lower.indexOf("actualízame") !== -1 || 
-      lower.indexOf("actualizame") !== -1 || lower.indexOf("qué está pasando") !== -1 || 
-      lower.indexOf("que esta pasando") !== -1 || lower.indexOf("novedades") !== -1 ||
-      lower.indexOf("omnicampus") !== -1 || lower.indexOf("slack") !== -1 || 
-      lower.indexOf("correo") !== -1 || lower === "/briefing") {
+  // C. BRIEFING UNIFICADO 360° (GMAIL + OMNICAMPUS + SLACK)
+  // Solo se activa si se solicita EXPLÍCITAMENTE (evita falsos positivos con palabras sueltas)
+  if (lower === "/briefing" || lower.indexOf("briefing") !== -1 || 
+      lower.indexOf("actualízame") !== -1 || lower.indexOf("actualizame") !== -1 || 
+      lower.indexOf("qué está pasando") !== -1 || lower.indexOf("que esta pasando") !== -1 || 
+      lower.indexOf("dame un resumen general") !== -1 || lower.indexOf("resumen del día") !== -1) {
     return getUnifiedTriPlatformBriefing();
   }
 
-  // C. FINANZAS / GASTOS / INGRESOS
+  // D. FINANZAS / GASTOS / INGRESOS
   if (lower.indexOf("gasté") !== -1 || lower.indexOf("gaste") !== -1 || 
       lower.indexOf("gasto") !== -1 || lower.indexOf("compré") !== -1 || 
       lower.indexOf("ingreso") !== -1 || lower.indexOf("cobré") !== -1 || 
@@ -110,14 +121,14 @@ function handleNexusIntelligence(text, chatId) {
     return handleFinanceRecord(text);
   }
 
-  // D. HÁBITOS / SUEÑO / ENERGÍA
+  // E. HÁBITOS / SUEÑO / ENERGÍA
   if (lower.indexOf("dormí") !== -1 || lower.indexOf("dormi") !== -1 || 
       lower.indexOf("sueño") !== -1 || lower.indexOf("energia") !== -1 || 
       lower.indexOf("energía") !== -1) {
     return handleHabitsRecord(text);
   }
 
-  // E. CONSULTA ACADÉMICA / PREGUNTAS / ESTRATEGIA (GEMINI 3.5 FLASH)
+  // F. CONSULTA ACADÉMICA / PREGUNTAS / ESTRATEGIA (GEMINI 3.5 FLASH)
   return callGeminiBrain(text);
 }
 
@@ -129,41 +140,45 @@ function handleImprevistoCalendar(text) {
   var now = new Date();
   var lower = text.toLowerCase();
 
-  // 1. Extraer duración en minutos
-  var durationMin = 60; // default 1 hora
-  var minMatch = text.match(/(\d+)\s*(?:minutos|min|m\b)/i);
-  var hourMatch = text.match(/(\d+(?:\.\d+)?)\s*(?:horas|hora|h\b)/i);
-
-  if (minMatch) {
-    durationMin = parseInt(minMatch[1], 10);
-  } else if (hourMatch) {
-    durationMin = Math.round(parseFloat(hourMatch[1]) * 60);
-  }
-
-  // 2. Extraer hora de inicio si se especificó (ej. "a las 15:30", "16:00")
-  var startHour = now.getHours();
-  var startMinute = Math.ceil((now.getMinutes() + 5) / 10) * 10;
-  
-  var timeMatch = text.match(/(?:a las|desde las|alas)?\s*(\d{1,2}):(\d{2})/i);
-  if (timeMatch) {
-    startHour = parseInt(timeMatch[1], 10);
-    startMinute = parseInt(timeMatch[2], 10);
-  } else {
-    var timeHMatch = text.match(/(?:a las|desde las)\s*(\d{1,2})\s*(?:pm|am)?/i);
-    if (timeHMatch) {
-      startHour = parseInt(timeHMatch[1], 10);
-      if (lower.indexOf("pm") !== -1 && startHour < 12) startHour += 12;
-      startMinute = 0;
-    }
-  }
-
   var startTime = new Date();
-  startTime.setHours(startHour, startMinute, 0, 0);
-  var endTime = new Date(startTime.getTime() + durationMin * 60000);
+  var endTime = new Date();
+  var durationMin = 60; // default 1 hora
+
+  // 1. Detectar si dice "hasta las HH:MM" (ej. "ocupado hasta las 23:59")
+  var hastaMatch = text.match(/hasta\s+(?:las\s+)?(\d{1,2}):(\d{2})/i);
+  if (hastaMatch) {
+    var endHour = parseInt(hastaMatch[1], 10);
+    var endMin = parseInt(hastaMatch[2], 10);
+    endTime.setHours(endHour, endMin, 0, 0);
+    if (endTime.getTime() <= startTime.getTime()) {
+      endTime.setDate(endTime.getDate() + 1);
+    }
+    durationMin = Math.max(15, Math.round((endTime.getTime() - startTime.getTime()) / 60000));
+  } else {
+    // 2. Extraer duración explícita en minutos u horas
+    var minMatch = text.match(/(\d+)\s*(?:minutos|min|m\b)/i);
+    var hourMatch = text.match(/(\d+(?:\.\d+)?)\s*(?:horas|hora|h\b)/i);
+    if (minMatch) {
+      durationMin = parseInt(minMatch[1], 10);
+    } else if (hourMatch) {
+      durationMin = Math.round(parseFloat(hourMatch[1]) * 60);
+    }
+
+    // Hora de inicio si se especificó
+    var startHour = now.getHours();
+    var startMinute = Math.ceil((now.getMinutes() + 5) / 10) * 10;
+    var timeMatch = text.match(/(?:a las|desde las|alas)\s*(\d{1,2}):(\d{2})/i);
+    if (timeMatch) {
+      startHour = parseInt(timeMatch[1], 10);
+      startMinute = parseInt(timeMatch[2], 10);
+      startTime.setHours(startHour, startMinute, 0, 0);
+    }
+    endTime = new Date(startTime.getTime() + durationMin * 60000);
+  }
 
   // 3. Extraer descripción limpia
   var desc = "Actividad Imprevista";
-  var prefixes = ["surgió un imprevisto:", "surgió un imprevisto", "surgio un imprevisto", "tengo", "surgió una actividad"];
+  var prefixes = ["surgió un imprevisto:", "surgió un imprevisto", "surgio un imprevisto", "tengo", "surgió una actividad", "estaré ocupado", "estare ocupado"];
   for (var i = 0; i < prefixes.length; i++) {
     var idx = lower.indexOf(prefixes[i]);
     if (idx !== -1) {
@@ -193,11 +208,9 @@ function handleImprevistoCalendar(text) {
     // Colisión
     if (Math.max(evStart.getTime(), startTime.getTime()) < Math.min(evEnd.getTime(), endTime.getTime())) {
       var evTitle = ev.getTitle();
-      // Si es clase obligatoria o sueño, no se mueve
       if (evTitle.indexOf("UMSA") !== -1 || evTitle.indexOf("Sueño") !== -1 || evTitle.indexOf("Empresa") !== -1) {
         ev.setDescription(ev.getDescription() + "\n⚠️ Solapamiento con imprevisto: " + desc);
       } else {
-        // Mover a después del imprevisto o al buffer
         var newEvStart = new Date(endTime.getTime() + 15 * 60000);
         var dur = evEnd.getTime() - evStart.getTime();
         var newEvEnd = new Date(newEvStart.getTime() + dur);
@@ -212,16 +225,16 @@ function handleImprevistoCalendar(text) {
   var eStr = Utilities.formatDate(endTime, TIMEZONE, "HH:mm");
 
   var report = "✅ *Itinerario Recalculado en tu Google Calendar:*\n\n" +
-               "🚨 *Imprevisto Agendado:* " + desc + "\n" +
+               "🚨 *Bloque Ocupado:* " + desc + "\n" +
                "⏰ *Horario:* `" + sStr + " - " + eStr + "` (" + durationMin + " min)\n\n";
 
   if (displaced.length > 0) {
     report += "🔄 *Ajustes Automáticos en tu Celular:*\n• " + displaced.join("\n• ") + "\n\n";
   } else {
-    report += "🛡️ *Impacto Absorbido:* El imprevisto cayó en una ventana libre; tus clases y descanso no se alteraron.\n\n";
+    report += "🛡️ *Impacto Absorbido:* El imprevisto fue agendado sin alterar clases obligatorias.\n\n";
   }
 
-  report += "📱 *Revisa Google Calendar en tu celular:* El bloque ya tiene su alerta emergente de 10 min configurada.";
+  report += "📱 *Revisa Google Calendar en tu celular:* Tu calendario ya se actualizó en vivo con su alerta de 10 min.";
   return report;
 }
 
@@ -237,7 +250,6 @@ function getTodayScheduleReport() {
     return "📅 No tienes eventos programados para hoy en tu calendario.";
   }
 
-  // Ordenar por hora de inicio
   events.sort(function(a, b) {
     return a.getStartTime().getTime() - b.getStartTime().getTime();
   });
@@ -259,80 +271,36 @@ function getTodayScheduleReport() {
 }
 
 /**
- * BRIEFING UNIFICADO 360°: GMAIL + OMNICAMPUS + SLACK
- * Extrae en vivo las novedades de tus 3 plataformas y las sintetiza con Gemini Flash
+ * BRIEFING UNIFICADO 360° ULTRARRÁPIDO (< 2 segundos)
+ * Realiza una única búsqueda agrupada para evitar timeouts de Telegram
  */
 function getUnifiedTriPlatformBriefing() {
   var dataReport = [];
 
-  // 1. GMAIL (Correos no leídos y recientes importantes)
   try {
-    var gmailThreads = GmailApp.search("is:unread newer_than:2d", 0, 8);
-    var gmailItems = [];
-    for (var i = 0; i < gmailThreads.length; i++) {
-      var msg = gmailThreads[i].getMessages()[0];
-      gmailItems.push("- De: " + msg.getFrom() + " | Asunto: " + msg.getSubject() + " | Resumen: " + msg.getPlainBody().substring(0, 160).replace(/\n/g, " "));
+    // Búsqueda única en Gmail para máxima velocidad
+    var threads = GmailApp.search("(is:unread OR from:omnicampus OR from:slack.com) newer_than:2d", 0, 6);
+    var items = [];
+    for (var i = 0; i < threads.length; i++) {
+      var msg = threads[i].getMessages()[0];
+      items.push("- De: " + msg.getFrom() + " | Asunto: " + msg.getSubject() + " | " + msg.getPlainBody().substring(0, 160).replace(/\n/g, " "));
     }
-    dataReport.push("=== CORREOS ELECTRÓNICOS RECIENTES (GMAIL) ===\n" + (gmailItems.length > 0 ? gmailItems.join("\n") : "No hay correos no leídos recientes."));
+    dataReport.push("=== CORREOS / OMNICAMPUS / SLACK ===\n" + (items.length > 0 ? items.join("\n") : "Bandeja limpia: No hay correos no leídos ni avisos nuevos."));
   } catch (err) {
-    dataReport.push("=== GMAIL === Error leyendo: " + err.toString());
+    dataReport.push("=== AVISO === " + err.toString());
   }
 
-  // 2. OMNICAMPUS & GCI WORLD TOKIO (Alertas de tareas, anuncios, laboratorios)
-  try {
-    var omniThreads = GmailApp.search('from:omnicampus OR "OmniCampus" OR "GCI 2026" OR "Matsuo" OR "Tokyo" newer_than:7d', 0, 5);
-    var omniItems = [];
-    for (var j = 0; j < omniThreads.length; j++) {
-      var oMsg = omniThreads[j].getMessages()[0];
-      omniItems.push("- Anuncio/Tarea: " + oMsg.getSubject() + " | Fecha: " + oMsg.getDate().toLocaleDateString() + " | Texto: " + oMsg.getPlainBody().substring(0, 200).replace(/\n/g, " "));
-    }
-    dataReport.push("=== OMNICAMPUS / MATSUO LAB TOKIO ===\n" + (omniItems.length > 0 ? omniItems.join("\n") : "No se detectaron correos recientes con la etiqueta OmniCampus/GCI."));
-  } catch (err2) {
-    dataReport.push("=== OMNICAMPUS === Error: " + err2.toString());
-  }
-
-  // 3. SLACK (Notificaciones y menciones)
-  try {
-    var slackItems = [];
-    // Si hay token directo de Slack
-    var slackToken = (typeof SLACK_API_TOKEN !== "undefined" && SLACK_API_TOKEN) ? SLACK_API_TOKEN : "";
-    if (slackToken && slackToken.indexOf("xox") === 0) {
-      try {
-        var sUrl = "https://slack.com/api/conversations.list?types=public_channel,private_channel&limit=5";
-        var sResp = UrlFetchApp.fetch(sUrl, {
-          headers: {"Authorization": "Bearer " + slackToken},
-          muteHttpExceptions: true
-        });
-        if (sResp.getResponseCode() === 200) {
-          slackItems.push("- Conexión API a Slack exitosa.");
-        }
-      } catch (sErr) {}
-    }
-    
-    // Notificaciones de Slack recibidas por correo
-    var slackThreads = GmailApp.search('from:slack.com newer_than:3d', 0, 5);
-    for (var s = 0; s < slackThreads.length; s++) {
-      var sMsg = slackThreads[s].getMessages()[0];
-      slackItems.push("- Slack: " + sMsg.getSubject() + " | " + sMsg.getPlainBody().substring(0, 160).replace(/\n/g, " "));
-    }
-
-    dataReport.push("=== SLACK (GCI WORLD / EQUIPOS) ===\n" + (slackItems.length > 0 ? slackItems.join("\n") : "No hay menciones ni avisos pendientes de Slack."));
-  } catch (err3) {
-    dataReport.push("=== SLACK === Error: " + err3.toString());
-  }
-
-  // 4. Sintetizar con Gemini Flash
   var promptBriefing = 
-    "Eres el Copiloto Ejecutivo de NEXUS Life OS para Mark Eduardo Terrazas Luna (estudiante de Ingeniería Industrial UMSA, estudiante de GCI World en la Universidad de Tokio Matsuo Lab, practicante de Empresa). " +
-    "Analiza la siguiente información recién extraída en tiempo real de sus 3 plataformas:\n\n" +
+    "Eres el Copiloto Ejecutivo de NEXUS Life OS para Mark Eduardo Terrazas Luna (Ingeniería Industrial UMSA, GCI World Tokio 2026, Empresa). " +
+    "Analiza la siguiente información de sus plataformas y genera un BRIEFING EJECUTIVO DE ALTO NIVEL (InvernovAH: conciso, directo, foco 80/20) en Markdown para Telegram:\n\n" +
     dataReport.join("\n\n") + "\n\n" +
-    "Sintetiza un BRIEFING EJECUTIVO DE ALTO NIVEL (Filosofía Álvaro Hernández / InvernovAH: cero paja, foco en prioridades, claridad absoluta) con el siguiente formato Markdown para Telegram:\n" +
+    "Formato:\n" +
     "📋 **BRIEFING INTELIGENTE 360° NEXUS:**\n\n" +
-    "🚨 **1. ACCIÓN INMEDIATA / URGENTE** (¿Qué requiere respuesta de Mark hoy? Si no hay nada urgente, dilo con calma)\n" +
+    "🚨 **1. ACCIÓN INMEDIATA / URGENTE** (Si no hay nada urgente, dilo con calma)\n" +
     "🇯🇵 **2. OMNICAMPUS & GCI WORLD TOKIO** (Tareas, fechas límites de Kaggle/laboratorios, avisos del Sensei)\n" +
     "🏛️ **3. UMSA & EMPRESA** (Notas, avisos de docentes, comunicados laborales)\n" +
-    "💬 **4. SLACK** (Menciones, dudas resueltas y anuncios de comunidad)\n" +
-    "💡 **5. PRÓXIMA MICRO-ACCIÓN RECOMENDADA** (Qué debería hacer en su siguiente bloque disponible)";
+    "💬 **4. SLACK** (Menciones o avisos)\n" +
+    "💡 **5. PRÓXIMA MICRO-ACCIÓN RECOMENDADA**";
 
   return callGeminiBrain(promptBriefing);
 }
@@ -415,20 +383,17 @@ function callGeminiBrain(promptText) {
  */
 function transcribeVoiceWithGemini(fileId) {
   try {
-    // 1. Obtener file_path de Telegram API
     var getFileUrl = "https://api.telegram.org/bot" + TELEGRAM_BOT_TOKEN + "/getFile?file_id=" + fileId;
     var fileResp = UrlFetchApp.fetch(getFileUrl);
     var fileInfo = JSON.parse(fileResp.getContentText());
     var filePath = fileInfo.result.file_path;
     if (!filePath) return null;
 
-    // 2. Descargar audio
     var downloadUrl = "https://api.telegram.org/file/bot" + TELEGRAM_BOT_TOKEN + "/" + filePath;
     var audioBlob = UrlFetchApp.fetch(downloadUrl).getBlob();
     var audioB64 = Utilities.base64Encode(audioBlob.getBytes());
     var mimeType = filePath.indexOf(".oga") !== -1 || filePath.indexOf(".ogg") !== -1 ? "audio/ogg" : "audio/mp3";
 
-    // 3. Transcribir con Gemini Flash
     var geminiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=" + GEMINI_API_KEY;
     var payload = {
       contents: [
@@ -488,7 +453,6 @@ function sendTelegramMessage(chatId, text) {
       muteHttpExceptions: true
     });
   } catch (e) {
-    // Si falla por Markdown, enviar como texto plano
     delete payload.parse_mode;
     UrlFetchApp.fetch(url, {
       method: "post",
