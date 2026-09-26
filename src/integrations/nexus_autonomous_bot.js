@@ -95,19 +95,27 @@ var ACTIVITY_PROFILES = {
 function doPost(e) {
   try {
     if (!e || !e.postData || !e.postData.contents) {
-      return ContentService.createTextOutput("OK");
+      return HtmlService.createHtmlOutput("OK");
     }
 
     var update = JSON.parse(e.postData.contents);
     var message = update.message || update.edited_message;
-    if (!message) return ContentService.createTextOutput("OK");
+    if (!message) return HtmlService.createHtmlOutput("OK");
 
-    // 🛑 FILTRO ANTIBUCLE Y DEDUPLICACIÓN DE TELEGRAM
+    // 🛑 1. FILTRO DE MENSAJES VIEJOS (DETIENE BUCLES DE TELEGRAM)
+    // Si Telegram intenta reenviar un mensaje que tiene más de 120 segundos de antigüedad, se ignora de inmediato.
+    var msgDate = message.date;
+    var nowSec = Math.floor(Date.now() / 1000);
+    if (msgDate && (nowSec - msgDate > 120)) {
+      return HtmlService.createHtmlOutput("OK");
+    }
+
+    // 🛑 2. FILTRO DEDUPLICADOR POR UPDATE_ID
     var cache = CacheService.getScriptCache();
     var updateId = update.update_id ? update.update_id.toString() : null;
     if (updateId) {
       if (cache.get("up_" + updateId)) {
-        return ContentService.createTextOutput("OK"); // Ignorar reintento duplicado
+        return HtmlService.createHtmlOutput("OK"); // Ignorar reintento duplicado
       }
       cache.put("up_" + updateId, "1", 300); // Recordar por 5 minutos
     }
@@ -117,40 +125,44 @@ function doPost(e) {
     var voice = message.voice || message.audio;
     var isVoice = false;
 
-    // 1. Transcripción multimodal si es nota de voz
+    // Feedback inmediato a Telegram ("Escribiendo...") para confirmar recepción
+    sendChatAction(chatId, "typing");
+
+    // 3. Transcripción multimodal si es nota de voz
     if (voice && voice.file_id) {
       sendTelegramMessage(chatId, "🎙️ _Escuchando tu nota de voz con IA en la nube..._");
       text = transcribeVoiceWithGemini(voice.file_id);
       isVoice = true;
       if (!text) {
         sendTelegramMessage(chatId, "⚠️ No pude escuchar con claridad el audio. Intenta hablar más cerca del micrófono.");
-        return ContentService.createTextOutput("OK");
+        return HtmlService.createHtmlOutput("OK");
       }
     }
 
     if (!text || text.trim() === "") {
-      return ContentService.createTextOutput("OK");
+      return HtmlService.createHtmlOutput("OK");
     }
 
-    // 2. Procesar intención y ejecutar acción en Google Calendar / Sheets / IA
+    // 4. Procesar intención y ejecutar acción en Google Calendar / Sheets / IA
     var reply = handleNexusIntelligence(text.trim(), chatId);
 
     if (isVoice) {
       reply = "🎙️ *Nota de voz transcrita:* \"_" + text + "_\"\n\n" + reply;
     }
 
-    // 3. Responder al usuario en Telegram
+    // 5. Responder al usuario en Telegram
     sendTelegramMessage(chatId, reply);
 
   } catch (err) {
     Logger.log("Error en doPost: " + err.toString());
   }
 
-  return ContentService.createTextOutput("OK");
+  // IMPORTANTE: HtmlService previene el error '302 Found' de Google que causaba bucles en Telegram
+  return HtmlService.createHtmlOutput("OK");
 }
 
 function doGet(e) {
-  return ContentService.createTextOutput("NEXUS Life OS 24/7 Cloud Webhook v4.0 is LIVE and ACTIVE.");
+  return HtmlService.createHtmlOutput("NEXUS Life OS 24/7 Cloud Webhook v4.0 is LIVE and ACTIVE.");
 }
 
 /**
@@ -756,16 +768,23 @@ function getOrCreateResourcesSpreadsheet() {
 
 /**
  * BRIEFING UNIFICADO 360° ULTRARRÁPIDO (< 2 segundos)
+ * Implementa caché de 10 minutos para evitar esperas y reintentos innecesarios
  */
 function getUnifiedTriPlatformBriefing() {
+  var cache = CacheService.getScriptCache();
+  var cachedBriefing = cache.get("nexus_briefing_360");
+  if (cachedBriefing) {
+    return "⚡ _(Briefing actualizado recientemente — Caché activo)_\n\n" + cachedBriefing;
+  }
+
   var dataReport = [];
 
   try {
-    var threads = GmailApp.search("(is:unread OR from:omnicampus OR from:slack.com OR from:gci) newer_than:2d", 0, 6);
+    var threads = GmailApp.search("(is:unread OR from:omnicampus OR from:slack.com OR from:gci) newer_than:2d", 0, 4);
     var items = [];
     for (var i = 0; i < threads.length; i++) {
       var msg = threads[i].getMessages()[0];
-      items.push("- De: " + msg.getFrom() + " | Asunto: " + msg.getSubject() + " | " + msg.getPlainBody().substring(0, 160).replace(/\n/g, " "));
+      items.push("- De: " + msg.getFrom() + " | Asunto: " + msg.getSubject() + " | " + msg.getPlainBody().substring(0, 140).replace(/\n/g, " "));
     }
     dataReport.push("=== CORREOS / OMNICAMPUS / SLACK ===\n" + (items.length > 0 ? items.join("\n") : "Bandeja limpia: No hay correos no leídos ni avisos nuevos."));
   } catch (err) {
@@ -784,7 +803,13 @@ function getUnifiedTriPlatformBriefing() {
     "💬 **4. SLACK** (Menciones o avisos)\n" +
     "💡 **5. PRÓXIMA MICRO-ACCIÓN RECOMENDADA**";
 
-  return callGeminiBrain(promptBriefing);
+  var result = callGeminiBrain(promptBriefing);
+  if (result && result.indexOf("NEXUS Assistant:") === -1) {
+    try {
+      cache.put("nexus_briefing_360", result, 600); // 10 minutos
+    } catch (e) {}
+  }
+  return result;
 }
 
 /**
@@ -979,6 +1004,24 @@ function sendTelegramMessage(chatId, text) {
       muteHttpExceptions: true
     });
   }
+}
+
+/**
+ * Envía la acción de 'escribiendo...' a Telegram para confirmar que el bot está activo
+ */
+function sendChatAction(chatId, action) {
+  try {
+    var url = "https://api.telegram.org/bot" + TELEGRAM_BOT_TOKEN + "/sendChatAction";
+    UrlFetchApp.fetch(url, {
+      method: "post",
+      contentType: "application/json",
+      payload: JSON.stringify({
+        chat_id: chatId,
+        action: action || "typing"
+      }),
+      muteHttpExceptions: true
+    });
+  } catch (e) {}
 }
 
 /**
